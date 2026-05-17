@@ -69,7 +69,7 @@ function PortfolioPreview(): React.JSX.Element {
             );
           })}
         </div>
-        <div className="mt-10">
+        <div className="mt-10 text-center">
           <a
             href="https://github.com/msmith1392"
             target="_blank"
