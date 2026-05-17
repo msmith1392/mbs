@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://matthewbsmith.com/sitemap.xml

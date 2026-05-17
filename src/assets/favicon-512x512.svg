@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect x="0" y="0" width="512" height="512" rx="0" fill="#111111"/>
+  <text x="256" y="280" text-anchor="middle" dominant-baseline="middle" font-family="system-ui, -apple-system, sans-serif" font-size="154" font-weight="900" letter-spacing="-5">
+    <tspan fill="#f8fafc">MBS</tspan><tspan fill="#3b82f6">C</tspan>
+  </text>
+</svg>

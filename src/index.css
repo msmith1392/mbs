@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-blue-lct: #3b82f6;
+  /* Filled controls: white text meets WCAG AA normal text (4.5:1) */
+  --color-blue-lct-cta: #1d4ed8;
+  --color-blue-lct-cta-hover: #2563eb;
+  /* Secondary copy on #111 / #1c1c1c */
+  --color-fg-muted: #a3a3a3;
+  --color-dark: #111111;
+  --color-dark-light: #1c1c1c;
+}
+
+@layer base {
+  body {
+    background-color: #111111;
+  }
+
+  h1,
+  h2 {
+    text-wrap: balance;
+  }
+
+  h1 {
+    line-height: 1.12;
+  }
+
+  h2 {
+    line-height: 1.2;
+  }
+}
