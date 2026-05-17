@@ -1,36 +1,72 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import useYearsOfExperience from '../hooks/useYearsOfExperience';
 import { CAREER_START } from '../data/constants';
 
 function Hero(): React.JSX.Element {
   const totalYears: number = useYearsOfExperience(CAREER_START);
   return (
-    <section
-      id="hero"
-      className="flex scroll-mt-20 flex-col items-center bg-dark px-6 py-24 text-center"
-    >
-      <h1 className="text-4xl font-bold text-white max-w-3xl leading-tight mb-4 tracking-wide">
-        Senior Software Engineer. Independent Consultant.
-      </h1>
-      <p className="text-lg text-white/70 max-w-2xl mb-4">
-        I build production-grade software for teams and businesses that need it done right. My
-        background spans federal agency platforms, enterprise systems, and custom web solutions for
-        clients across the region.
-      </p>
-      <p className="text-sm font-medium text-fg-muted mb-10 tracking-widest uppercase">
-        Software engineering and web development. Somerset, KY.
-      </p>
-      <Link
-        to="/contact"
-        className="bg-blue-lct-cta text-white px-8 py-3 rounded font-semibold hover:bg-blue-lct-cta-hover transition-colors"
-      >
-        Get in Touch
-      </Link>
-      <p className="mt-10 text-sm text-fg-muted max-w-2xl">
-        {totalYears}+ years delivering production software across federal agencies, enterprise
-        organizations, and regional businesses. Custom websites for local clients too.
-      </p>
+    <section id="hero" className="bg-dark px-6 py-24">
+      <div className="mx-auto max-w-3xl text-center">
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-900/40 px-3 py-1 text-xs font-semibold text-emerald-300 ring-1 ring-emerald-500/30">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
+          Currently available for C2C engagements
+        </div>
+        <h1 className="mt-2 mb-2 text-4xl font-bold tracking-wide text-white">Matthew B. Smith</h1>
+        <p className="mb-4 text-xl font-semibold tracking-wide text-blue-lct">
+          Senior Software Engineer
+        </p>
+        <p className="mx-auto mb-6 max-w-2xl text-lg leading-relaxed text-white/70">
+          Independent consultant for technical teams that need senior engineering capacity.{' '}
+          {totalYears}+ years shipping production software across federal agency platforms,
+          enterprise systems, and distributed services at scale.
+        </p>
+        <p className="mb-8 text-sm text-white/50">
+          <a
+            href="mailto:matt@matthewbsmith.com"
+            className="text-white/70 transition-colors hover:text-white"
+          >
+            matt@matthewbsmith.com
+          </a>
+          <span className="mx-2 text-white/20" aria-hidden="true">
+            &middot;
+          </span>
+          Somerset, KY &middot; Available remotely
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          <a
+            href="#contact"
+            className="inline-block rounded bg-blue-lct-cta px-8 py-3 font-semibold text-white transition-colors hover:bg-blue-lct-cta-hover"
+          >
+            Get in Touch
+          </a>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block rounded border-2 border-white/30 px-8 py-3 font-semibold text-white transition-colors hover:border-white"
+          >
+            Download CV
+          </a>
+        </div>
+        <div className="mt-12 grid grid-cols-3 gap-8 border-t border-white/10 pt-10">
+          <div>
+            <div className="text-3xl font-bold text-white">{totalYears}+</div>
+            <div className="mt-1 text-xs uppercase tracking-wide text-white/40">
+              Years Experience
+            </div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-white">4</div>
+            <div className="mt-1 text-xs uppercase tracking-wide text-white/40">Companies</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-white">2</div>
+            <div className="mt-1 text-xs uppercase tracking-wide text-white/40">
+              Sectors (Federal &amp; Private)
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

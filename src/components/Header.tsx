@@ -1,23 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import msbcWordmark from '../assets/mbsc-wordmark.svg'; // SVG wordmark
 
 type NavItem = {
   label: string;
-  to: string;
+  href: string;
 };
 
 const navItems: NavItem[] = [
-  { label: 'Home', to: '/' },
-  { label: 'Consulting', to: '/consulting' },
-  { label: 'Websites', to: '/websites' },
-  { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'About', href: '/#about' },
+  { label: 'Experience', href: '/#experience' },
+  { label: 'Skills', href: '/#skills' },
+  { label: 'Portfolio', href: '/#portfolio' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 function Header(): React.JSX.Element {
-  const { pathname } = useLocation();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileNavRef = useRef<HTMLDivElement>(null);
@@ -62,36 +61,28 @@ function Header(): React.JSX.Element {
     return () => nav.removeEventListener('keydown', handleKeyDown);
   }, [menuOpen]);
 
-  function isActive(item: NavItem): boolean {
-    if (item.to === '/') {
-      return pathname === '/';
-    }
-    return pathname === item.to;
-  }
-
   function renderDesktopLink(item: NavItem): React.JSX.Element {
-    const active = isActive(item);
-    const cls = `text-base font-medium transition-colors ${active ? 'text-white' : 'text-gray-300 hover:text-white'}`;
     return (
-      <Link key={item.to} to={item.to} className={cls} aria-current={active ? 'page' : undefined}>
+      <a
+        key={item.href}
+        href={item.href}
+        className="rounded px-3 py-1.5 text-base font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+      >
         {item.label}
-      </Link>
+      </a>
     );
   }
 
   function renderMobileLink(item: NavItem): React.JSX.Element {
-    const active = isActive(item);
-    const cls = `text-base font-medium transition-colors ${active ? 'text-white' : 'text-gray-300 hover:text-white'}`;
     return (
-      <Link
-        key={item.to}
-        to={item.to}
-        className={cls}
-        aria-current={active ? 'page' : undefined}
+      <a
+        key={item.href}
+        href={item.href}
+        className="rounded px-3 py-1.5 text-base font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
         onClick={() => setMenuOpen(false)}
       >
         {item.label}
-      </Link>
+      </a>
     );
   }
 
@@ -101,11 +92,7 @@ function Header(): React.JSX.Element {
         <Link
           to="/"
           className="flex items-center gap-1"
-          onClick={() => {
-            if (pathname === '/') {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-          }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           {/* SVG wordmark */}
           <img src={msbcWordmark} alt="Matthew B. Smith Consulting" className="h-8 w-auto" />

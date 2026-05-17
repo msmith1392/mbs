@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { ShieldCheck, Server, Layers, UserCheck } from 'lucide-react';
 import useYearsOfExperience from '../hooks/useYearsOfExperience';
 import { CAREER_START } from '../data/constants';
-import FaqAccordion from '../components/FaqAccordion';
-import type { FaqItem } from '../components/FaqAccordion';
 
 type Credential = {
   icon: React.ReactNode;
@@ -39,35 +37,11 @@ const credentials: Credential[] = [
   },
 ];
 
-const faqItems: FaqItem[] = [
-  {
-    question: 'How do I get started?',
-    answer:
-      'Send a message through the contact form with a short description of what you need. I will reply with a few clarifying questions or suggest a quick call. There is no fee for the first conversation and I only move forward when scope and fit are clear on both sides.',
-  },
-  {
-    question: 'Who will I work with?',
-    answer:
-      'You work directly with me. You get plain-language updates and a single thread of accountability. No rotating cast of account managers, no ticket queues, no waiting for someone to look up your project history.',
-  },
-  {
-    question: 'How long does a typical project take?',
-    answer:
-      'Timeline depends on content readiness, integrations, and review cycles. A focused marketing site is often a matter of weeks once copy and assets are available. Larger software engagements are planned in milestones with dates tied to deliverables, not vague phases.',
-  },
-  {
-    question: 'What does a quote include?',
-    answer:
-      'Before any billable build work, you get a written scope: what will be delivered, what is out of scope, assumptions, and a timeline. Hosting, domains, third-party fees, and optional ongoing care are called out separately so there are no surprise line items.',
-  },
-];
-
 function AboutPage(): React.JSX.Element {
   const totalYears: number = useYearsOfExperience(CAREER_START);
 
   return (
     <>
-      {/* Who We Are */}
       <section className="bg-dark px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <div className="mb-16 text-center">
@@ -75,9 +49,17 @@ function AboutPage(): React.JSX.Element {
             <p className="mx-auto max-w-2xl text-pretty text-lg text-white/60">
               I am a senior software engineer and independent consultant based in Somerset, KY, with{' '}
               {totalYears}+ years delivering production software across federal agencies, enterprise
-              organizations, and local businesses. I take on project-based engineering engagements
-              for technical teams and build custom websites for businesses across the region. Same
-              person, same standards, regardless of the size of the project.
+              organizations, and local businesses. I specialize in project-based engineering
+              engagements for technical teams. I also independently own and operate{' '}
+              <a
+                href="https://lakecumberlandtech.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-lct transition-colors hover:text-blue-400"
+              >
+                Lake Cumberland Technology Consulting
+              </a>
+              , a web services firm serving small businesses across the region.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
@@ -100,7 +82,7 @@ function AboutPage(): React.JSX.Element {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium text-blue-lct hover:text-blue-400 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-medium text-blue-lct transition-colors hover:text-blue-400"
             >
               Download my CV
               <span aria-hidden="true">↓</span>
@@ -109,24 +91,7 @@ function AboutPage(): React.JSX.Element {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="bg-dark-light px-6 py-24" aria-labelledby="faq-heading">
-        <div className="mx-auto max-w-3xl">
-          <div className="mb-14 text-center">
-            <h2 id="faq-heading" className="mb-3 text-3xl font-bold tracking-wide text-white">
-              Common Questions
-            </h2>
-            <p className="mx-auto max-w-2xl text-pretty text-base leading-relaxed text-white/60">
-              Straight answers on how I work. If your question is not here, ask me on the contact
-              form.
-            </p>
-          </div>
-          <FaqAccordion items={faqItems} />
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-dark px-6 py-24 text-center">
+      <section className="bg-dark-light px-6 py-24 text-center">
         <div className="mx-auto max-w-3xl">
           <h2 className="mb-4 text-3xl font-bold tracking-wide text-white">
             Ready to Get Started?

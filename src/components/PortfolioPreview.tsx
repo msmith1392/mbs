@@ -69,6 +69,16 @@ function PortfolioPreview(): React.JSX.Element {
             );
           })}
         </div>
+        <div className="mt-10">
+          <a
+            href="https://github.com/msmith1392"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-white/50 transition-colors hover:text-white"
+          >
+            More on GitHub <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
       </div>
     </section>
   );

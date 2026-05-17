@@ -37,7 +37,7 @@ export const projects: Project[] = [
     name: 'Sprout and Learn',
     tagline: 'Pediatric therapy clinic — Radcliff, KY',
     description:
-      'Multi-page site for a pediatric ABA, occupational, and speech-language therapy clinic. Custom design system, animated transitions, service pages, and a contact form with spam protection.',
+      'React and TypeScript multi-page application for a pediatric therapy clinic, deployed to Cloudflare Workers at the edge. Replaced a GoDaddy-hosted template with a fully custom design system, animated transitions, service pages, and a spam-protected contact form.',
     industry: 'Healthcare',
     location: 'Radcliff, KY',
     status: 'demo',

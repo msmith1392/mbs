@@ -5,10 +5,7 @@ import SkipToMain from './components/SkipToMain';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/Home';
-import Websites from './pages/Websites';
-import Consulting from './pages/Consulting';
 import AboutPage from './pages/About';
-import ContactPage from './pages/Contact';
 import NotFound from './pages/NotFound';
 
 function App(): React.JSX.Element {
@@ -25,10 +22,7 @@ function App(): React.JSX.Element {
         >
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/websites" element={<Websites />} />
-            <Route path="/consulting" element={<Consulting />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
