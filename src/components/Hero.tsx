@@ -23,7 +23,7 @@ function Hero(): React.JSX.Element {
         <p className="mb-8 text-sm text-white/50">
           <a
             href="mailto:matt@matthewbsmith.com"
-            className="text-white/70 transition-colors hover:text-white"
+            className="text-white/70 underline underline-offset-2 transition-colors hover:text-white"
           >
             matt@matthewbsmith.com
           </a>
@@ -51,17 +51,17 @@ function Hero(): React.JSX.Element {
         <div className="mt-12 grid grid-cols-3 gap-8 border-t border-white/10 pt-10">
           <div>
             <div className="text-3xl font-bold text-white">{totalYears}+</div>
-            <div className="mt-1 text-xs uppercase tracking-wide text-white/40">
+            <div className="mt-1 text-xs uppercase tracking-wide text-white/60">
               Years Experience
             </div>
           </div>
           <div>
             <div className="text-3xl font-bold text-white">4</div>
-            <div className="mt-1 text-xs uppercase tracking-wide text-white/40">Companies</div>
+            <div className="mt-1 text-xs uppercase tracking-wide text-white/60">Companies</div>
           </div>
           <div>
             <div className="text-3xl font-bold text-white">2</div>
-            <div className="mt-1 text-xs uppercase tracking-wide text-white/40">
+            <div className="mt-1 text-xs uppercase tracking-wide text-white/60">
               Sectors (Federal &amp; Private)
             </div>
           </div>

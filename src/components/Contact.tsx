@@ -2,7 +2,7 @@ import React from 'react';
 
 function Contact(): React.JSX.Element {
   return (
-    <section id="contact" className="scroll-mt-20 bg-dark-light px-6 py-24 text-center">
+    <section id="contact" className="scroll-mt-20 bg-dark px-6 py-24 text-center">
       <div className="mx-auto max-w-2xl">
         <h2 className="mb-4 text-3xl font-bold tracking-wide text-white">Get in Touch</h2>
         <p className="mb-8 text-white/60">
@@ -10,7 +10,7 @@ function Contact(): React.JSX.Element {
           costs nothing. Describe what you are working on and I will follow up.{' '}
           <a
             href="mailto:matt@matthewbsmith.com"
-            className="text-blue-lct transition-colors hover:text-blue-400"
+            className="text-blue-lct underline underline-offset-2 transition-colors hover:text-blue-400"
           >
             matt@matthewbsmith.com
           </a>

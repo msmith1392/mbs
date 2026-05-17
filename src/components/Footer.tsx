@@ -101,9 +101,7 @@ function Footer(): React.JSX.Element {
           </a>
         </div>
         <div className="mt-10 border-t border-white/10 pt-8">
-          <p className="text-sm text-fg-muted">
-            &copy; {new Date().getFullYear()} Matthew B. Smith Consulting
-          </p>
+          <p className="text-sm text-fg-muted">&copy; {new Date().getFullYear()} Matthew Smith</p>
         </div>
       </div>
     </footer>
