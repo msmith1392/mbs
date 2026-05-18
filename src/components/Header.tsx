@@ -2,19 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import msbcWordmark from '../assets/mbsc-wordmark.svg'; // SVG wordmark
-
-type NavItem = {
-  label: string;
-  href: string;
-};
-
-const navItems: NavItem[] = [
-  { label: 'About', href: '/#about' },
-  { label: 'Experience', href: '/#experience' },
-  { label: 'Skills', href: '/#skills' },
-  { label: 'Portfolio', href: '/#portfolio' },
-  { label: 'Contact', href: '/#contact' },
-];
+import { siteNavLinks } from '../data/siteNav';
+import type { SiteNavLink } from '../data/siteNav';
 
 function Header(): React.JSX.Element {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -61,25 +50,34 @@ function Header(): React.JSX.Element {
     return () => nav.removeEventListener('keydown', handleKeyDown);
   }, [menuOpen]);
 
-  function renderDesktopLink(item: NavItem): React.JSX.Element {
+  function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, item: SiteNavLink): void {
+    e.preventDefault();
+    document.getElementById(item.sectionId)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderDesktopLink(item: SiteNavLink): React.JSX.Element {
     return (
       <a
         key={item.href}
         href={item.href}
         className="rounded px-3 py-1.5 text-base font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+        onClick={(e) => handleNavClick(e, item)}
       >
         {item.label}
       </a>
     );
   }
 
-  function renderMobileLink(item: NavItem): React.JSX.Element {
+  function renderMobileLink(item: SiteNavLink): React.JSX.Element {
     return (
       <a
         key={item.href}
         href={item.href}
         className="rounded px-3 py-1.5 text-base font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
-        onClick={() => setMenuOpen(false)}
+        onClick={(e) => {
+          handleNavClick(e, item);
+          setMenuOpen(false);
+        }}
       >
         {item.label}
       </a>
@@ -98,7 +96,7 @@ function Header(): React.JSX.Element {
           <img src={msbcWordmark} alt="Matthew B. Smith Consulting" className="h-8 w-auto" />
         </Link>
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
-          {navItems.map(renderDesktopLink)}
+          {siteNavLinks.map(renderDesktopLink)}
         </nav>
         <button
           ref={menuButtonRef}
@@ -119,7 +117,7 @@ function Header(): React.JSX.Element {
           className="flex flex-col gap-3 border-t border-white/10 bg-dark px-6 pb-4 lg:hidden"
           aria-label="Primary mobile"
         >
-          {navItems.map(renderMobileLink)}
+          {siteNavLinks.map(renderMobileLink)}
         </nav>
       )}
     </header>
