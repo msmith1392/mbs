@@ -5,37 +5,32 @@ import { CAREER_START } from '../data/constants';
 function About(): React.JSX.Element {
   const totalYears: number = useYearsOfExperience(CAREER_START);
   return (
-    <section id="about" className="scroll-mt-20 bg-dark-light px-6 py-24">
-      <div className="mx-auto max-w-3xl text-center">
+    <section id="about" className="scroll-mt-20 bg-[var(--color-bg-primary)] px-6 py-12">
+      <div className="mx-auto max-w-5xl">
         {/* Photo slot: add an <img> here when a headshot is available */}
-        <h2 className="mb-8 text-3xl font-bold tracking-wide text-white">About</h2>
-        <div className="space-y-5 text-base leading-relaxed text-white/70">
+        <h2 className="mb-8 text-3xl font-normal text-[var(--color-text-primary)]">About</h2>
+        <div className="space-y-5 text-base leading-relaxed text-[var(--color-text-muted)]">
           <p>
-            I am a senior software engineer based in Somerset, KY with {totalYears}+ years
-            delivering production software across federal and enterprise environments. My background
-            runs from federal emergency management platforms and enterprise logistics systems to
-            cloud-native serverless architecture on AWS. I work across the full stack: Java and
-            Spring Boot on the backend, React, Svelte, and TypeScript on the frontend, and AWS
-            infrastructure throughout.
+            I am a senior software engineer based in Somerset, KY. For the past {totalYears} years I
+            have shipped production software across federal emergency management platforms,
+            enterprise logistics systems, and cloud-native AWS infrastructure, working across the
+            full stack in Java, Spring Boot, TypeScript, React, and Svelte.
           </p>
           <p>
-            I am available for C2C subcontracting engagements: staff augmentation, fixed-scope
-            projects, and architecture or advisory work. I embed directly into your team, use your
-            tooling, and ship alongside your people. You get a senior engineer with direct
-            experience in regulated, high-availability, and compliance-driven environments, without
-            the overhead of a full-time hire.
+            I am available for C2C and W2 engagements. I embed directly into your team, use your
+            tooling, and ship alongside your people.
           </p>
           <p>
-            I also independently own and operate{' '}
+            I also build websites for local businesses in the Somerset area. Current work:{' '}
             <a
-              href="https://lakecumberlandtech.com"
+              href="https://sproutky-demo.matthewbsmith.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-lct underline underline-offset-2 transition-colors hover:text-blue-400"
+              className="text-[var(--color-accent)] underline underline-offset-2 transition-colors hover:text-[var(--color-accent-hover)]"
             >
-              Lake Cumberland Technology Consulting
-            </a>
-            , a web services firm serving small businesses in the region.
+              Sprout and Learn
+            </a>{' '}
+            (in development).
           </p>
         </div>
       </div>

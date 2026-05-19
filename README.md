@@ -65,7 +65,7 @@ PNG files for favicons and OG image live in `public/` and are served directly.
 | `src/assets/demo-cards/` | Portfolio screenshot PNGs |
 | `public/favicon.png` | 512x512 favicon |
 | `public/og-image.png` | 1200x630 social preview image |
-| `public/resume.pdf` | Downloadable CV |
+| `public/MatthewSmithResume.pdf` | Downloadable CV |
 
 To regenerate `og-image.png`: open `src/assets/og-image1200x630.svg` in Chrome,
 set DevTools viewport to 1200x630, capture screenshot, save to `public/og-image.png`.

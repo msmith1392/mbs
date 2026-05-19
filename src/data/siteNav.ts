@@ -5,8 +5,7 @@ export type SiteNavLink = {
 };
 
 export const siteNavLinks: readonly SiteNavLink[] = [
-  { label: 'About', href: '/#about', sectionId: 'about' },
+  { label: 'Work', href: '/#work', sectionId: 'work' },
   { label: 'Experience', href: '/#experience', sectionId: 'experience' },
-  { label: 'Skills', href: '/#skills', sectionId: 'skills' },
   { label: 'Contact', href: '/#contact', sectionId: 'contact' },
 ];

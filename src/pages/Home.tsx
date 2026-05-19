@@ -1,17 +1,17 @@
 import React from 'react';
 import Hero from '../components/Hero';
-import About from '../components/About';
+import Work from '../components/Work';
 import Experience from '../components/Experience';
-import TechStack from '../components/TechStack';
+import About from '../components/About';
 import Contact from '../components/Contact';
 
 function HomePage(): React.JSX.Element {
   return (
     <>
       <Hero />
-      <About />
+      <Work />
       <Experience />
-      <TechStack />
+      <About />
       <Contact />
     </>
   );

@@ -54,15 +54,11 @@ function ResumeIcon(): React.JSX.Element {
 
 function Footer(): React.JSX.Element {
   return (
-    <footer className="border-t border-white/10 bg-dark px-6 py-14 text-white">
+    <footer className="border-t border-[var(--color-border)] bg-[var(--color-bg-primary)] px-6 py-14 text-[var(--color-text-primary)]">
       <div className="mx-auto max-w-6xl text-center">
-        <img
-          src={mbscWordmarkSm}
-          alt="Matthew B. Smith Consulting"
-          className="mx-auto h-6 w-auto"
-        />
-        <p className="mt-3 text-sm text-white/55">
-          Software engineering and consulting. Somerset, KY.
+        <img src={mbscWordmarkSm} alt="Matthew B. Smith" className="mx-auto h-6 w-auto" />
+        <p className="mt-3 text-sm text-[var(--color-text-muted)]">
+          Software engineering. Somerset, KY.
         </p>
         <div className="mt-6 flex items-center justify-center gap-5">
           <a
@@ -70,7 +66,7 @@ function Footer(): React.JSX.Element {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="text-white/55 transition-colors hover:text-white"
+            className="text-[var(--color-text-subtle)] transition-colors hover:text-[var(--color-text-primary)]"
           >
             <LinkedInIcon />
           </a>
@@ -79,29 +75,31 @@ function Footer(): React.JSX.Element {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="text-white/55 transition-colors hover:text-white"
+            className="text-[var(--color-text-subtle)] transition-colors hover:text-[var(--color-text-primary)]"
           >
             <GitHubIcon />
           </a>
           <a
             href="mailto:matt@matthewbsmith.com"
             aria-label="Email"
-            className="text-white/55 transition-colors hover:text-white"
+            className="text-[var(--color-text-subtle)] transition-colors hover:text-[var(--color-text-primary)]"
           >
             <Mail size={18} />
           </a>
           <a
-            href="/resume.pdf"
+            href="/MatthewSmithResume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Resume"
-            className="text-white/55 transition-colors hover:text-white"
+            className="text-[var(--color-text-subtle)] transition-colors hover:text-[var(--color-text-primary)]"
           >
             <ResumeIcon />
           </a>
         </div>
-        <div className="mt-10 border-t border-white/10 pt-8">
-          <p className="text-sm text-fg-muted">&copy; {new Date().getFullYear()} Matthew Smith</p>
+        <div className="mt-10 border-t border-[var(--color-border)] pt-8">
+          <p className="text-sm text-[var(--color-text-muted)]">
+            &copy; {new Date().getFullYear()} Matthew Smith
+          </p>
         </div>
       </div>
     </footer>

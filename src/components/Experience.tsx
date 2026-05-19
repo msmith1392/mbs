@@ -18,20 +18,17 @@ const roles: Role[] = [
     startDate: 'March 2019',
     endDate: 'Present',
     bullets: [
-      'Designed and delivered the Svelte frontend for a TypeScript monorepo of AWS serverless ' +
-        'applications (Lambda, API Gateway, CloudFront) serving as a unified access portal for ' +
-        'FEMA platforms including PrepToolkit, RTLT, RIS, and OneResponder.',
-      'Implemented a real-time presence tracking system for the Unified Reporting Tool (URT), ' +
-        'designing distributed session logic and polling timeouts to maintain data integrity for ' +
-        'concurrent federal users.',
-      'Automated enterprise reporting workflows using Docmosis and Apache POI, cutting ' +
-        'processing time from hours to minutes for national emergency preparedness programs.',
-      'Delivered complex features across backend (Spring Boot and .NET), database, and frontend ' +
-        'layers within FEMA preparedness platforms, ensuring cohesive integration between APIs, ' +
-        'data models, and user interfaces.',
-      'Translated complex FEMA business requirements (THIRA/SPR, CPG, NIMS, UAWG) into scalable ' +
-        'technical solutions, coordinating with project leads to ensure deliverables met federal ' +
-        'compliance and security standards.',
+      'Designed and built the Svelte frontend for a TypeScript monorepo of AWS serverless ' +
+        'applications serving as a unified access portal for FEMA platforms including PrepToolkit, ' +
+        'RTLT, RIS, and OneResponder.',
+      'Built real-time presence tracking for the Unified Reporting Tool, including distributed session ' +
+        'logic and polling timeouts to keep data consistent across concurrent federal users.',
+      'Automated enterprise reporting with Docmosis and Apache POI, cutting processing time ' +
+        'from hours to minutes for national emergency preparedness programs.',
+      'Delivered features across Spring Boot and .NET backends, MySQL, and Svelte frontends ' +
+        'within the FEMA preparedness platform suite.',
+      'Translated FEMA program requirements (THIRA/SPR, CPG, NIMS, UAWG) into technical ' +
+        'solutions, coordinating with project leads to meet federal compliance and security standards.',
     ],
     techStack: [
       'Java',
@@ -96,48 +93,48 @@ const roles: Role[] = [
 
 function Experience(): React.JSX.Element {
   return (
-    <section id="experience" className="scroll-mt-20 bg-dark px-6 py-24">
-      <div className="mx-auto max-w-4xl">
-        <h2 className="mb-12 text-center text-3xl font-bold tracking-wide text-white">
-          Experience
-        </h2>
-        <div className="flex flex-col gap-10">
+    <section id="experience" className="scroll-mt-20 bg-[var(--color-bg-primary)] px-6 py-12">
+      <div className="mx-auto max-w-5xl">
+        <h2 className="mb-12 text-3xl text-[var(--color-text-primary)]">Experience</h2>
+        <div>
           {roles.map((role) => (
             <div
               key={`${role.company}-${role.startDate}`}
-              className="rounded-xl border-l-4 border-blue-lct bg-dark-light p-8"
+              className="border-t border-[var(--color-border)] py-10"
             >
-              <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <h3 className="text-lg font-bold text-white">{role.jobTitle}</h3>
-                  <p className="font-medium text-blue-lct">{role.company}</p>
-                </div>
-                <div className="shrink-0 text-sm text-fg-muted sm:text-right">
-                  <p>
-                    {role.startDate} &ndash; {role.endDate}
-                  </p>
-                  <p>{role.location}</p>
-                </div>
+              {/* Top line: title + date range */}
+              <div className="mb-1 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
+                <h3 className="text-xl text-[var(--color-text-primary)]">{role.jobTitle}</h3>
+                <span className="shrink-0 text-sm text-[var(--color-text-subtle)]">
+                  {role.startDate} &ndash; {role.endDate}
+                </span>
               </div>
+              {/* Second line: company + location */}
+              <div className="mb-5 flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
+                <span className="text-sm text-[var(--color-accent)]">{role.company}</span>
+                <span className="text-sm text-[var(--color-text-subtle)]">{role.location}</span>
+              </div>
+              {/* Bullets */}
               <ul className="mb-5 space-y-2">
                 {role.bullets.map((bullet) => (
                   <li
                     key={bullet.slice(0, 40)}
-                    className="flex gap-3 text-sm leading-relaxed text-white/70"
+                    className="flex gap-3 text-sm leading-relaxed text-[var(--color-text-muted)]"
                   >
                     <span
-                      className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-lct"
+                      className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-accent)]"
                       aria-hidden="true"
                     />
                     {bullet}
                   </li>
                 ))}
               </ul>
-              <div className="flex flex-wrap gap-1.5">
+              {/* Tech stack tags */}
+              <div className="flex flex-wrap gap-2">
                 {role.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="rounded-full bg-dark px-2.5 py-0.5 text-xs font-medium text-white/60 ring-1 ring-white/10"
+                    className="rounded-sm px-2.5 py-0.5 text-xs text-[var(--color-text-muted)] ring-1 ring-[var(--color-border-emphasis)]"
                   >
                     {tech}
                   </span>

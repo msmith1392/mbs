@@ -17,7 +17,7 @@ function App(): React.JSX.Element {
         <main
           id="main-content"
           tabIndex={-1}
-          className="flex-1 outline-none focus-visible:ring-2 focus-visible:ring-blue-lct focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
+          className="flex-1 outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg-primary)]"
         >
           <Routes>
             <Route path="/" element={<HomePage />} />

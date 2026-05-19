@@ -1,24 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap');
 @import 'tailwindcss';
 
 @theme {
-  --color-blue-lct: #3b82f6;
-  /* Filled controls: white text meets WCAG AA normal text (4.5:1) */
-  --color-blue-lct-cta: #1d4ed8;
-  --color-blue-lct-cta-hover: #2563eb;
-  /* Secondary copy on #111 / #1c1c1c */
-  --color-fg-muted: #a3a3a3;
-  --color-dark: #111111;
-  --color-dark-light: #1c1c1c;
+  --color-bg-primary: #0f1117;
+  --color-bg-secondary: #161b24;
+  --color-bg-tertiary: #1c2333;
+  --color-accent: #4a87d1;
+  --color-accent-hover: #5590d4;
+  --color-text-on-accent: #0f1117;
+  --color-text-primary: #e8eaf0;
+  --color-text-muted: #9ca3af;
+  --color-text-subtle: #7c8492;
+  --color-border: rgba(232, 234, 240, 0.07);
+  --color-border-emphasis: rgba(232, 234, 240, 0.13);
 }
 
 @layer base {
   body {
-    background-color: #111111;
+    background-color: #0f1117;
+    font-family: 'Inter', sans-serif;
+    color: var(--color-text-primary);
   }
 
   h1,
-  h2 {
+  h2,
+  h3 {
     text-wrap: balance;
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
   }
 
   h1 {
