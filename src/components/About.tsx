@@ -7,7 +7,6 @@ function About(): React.JSX.Element {
   return (
     <section id="about" className="scroll-mt-20 bg-(--color-bg-primary) px-6 py-12">
       <div className="mx-auto max-w-5xl">
-        {/* Photo slot: add an <img> here when a headshot is available */}
         <h2 className="mb-8 text-3xl font-normal text-text-primary">About</h2>
         <div className="space-y-5 text-base leading-relaxed text-text-muted">
           <p>
