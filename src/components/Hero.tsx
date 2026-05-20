@@ -57,6 +57,9 @@ function Hero(): React.JSX.Element {
             <img
               src="/photo1.webp"
               alt="Matthew Smith"
+              width={960}
+              height={958}
+              fetchPriority="high"
               className="w-64 rounded-xl object-cover lg:w-72"
             />
           </div>
