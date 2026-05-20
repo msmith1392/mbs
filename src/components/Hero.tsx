@@ -55,7 +55,7 @@ function Hero(): React.JSX.Element {
           {/* Right column — headshot */}
           <div className="flex justify-center lg:justify-end shrink-0">
             <img
-              src="/photo1.jpg"
+              src="/photo1.webp"
               alt="Matthew Smith"
               className="w-64 rounded-xl object-cover lg:w-72"
             />
