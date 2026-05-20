@@ -113,7 +113,7 @@ capture at 512x512, save to public/favicon.png.
 
 ## Components
 
-- Hero.tsx — single-column hero: eyebrow, heading, body paragraph, availability badge, CTA button, email link
+- Hero.tsx — two-column hero on desktop (flex-row), single column on mobile (flex-col-reverse); left has eyebrow, heading, body, availability badge, CTA, email link; right has photo (photo1.jpg)
 - Work.tsx — work/portfolio section with three items; uses useYearsOfExperience for the FEMA item description
 - Experience.tsx — career timeline, four roles rendered from a data array
 - About.tsx — brief bio and availability statement

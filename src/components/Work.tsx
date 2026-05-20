@@ -50,34 +50,34 @@ function Work(): React.JSX.Element {
   ];
 
   return (
-    <section id="work" className="scroll-mt-20 bg-[var(--color-bg-primary)] px-6 py-12">
+    <section id="work" className="scroll-mt-20 bg-(--color-bg-primary) px-6 py-12">
       <div className="mx-auto max-w-5xl">
-        <h2 className="mb-12 text-3xl text-[var(--color-text-primary)]">Work</h2>
+        <h2 className="mb-12 text-3xl text-text-primary">Work</h2>
         <div>
           {works.map((item) => (
             <div
               key={item.title}
-              className="border-t border-[var(--color-border)] py-10 sm:flex sm:items-start sm:justify-between sm:gap-12"
+              className="border-t border-border py-10 sm:flex sm:items-start sm:justify-between sm:gap-12"
             >
               {/* Left column */}
               <div className="flex-1">
-                <p className="mb-2 text-xs uppercase tracking-widest text-[var(--color-text-subtle)]">
+                <p className="mb-2 text-xs uppercase tracking-widest text-text-subtle">
                   {item.category}
                 </p>
                 <div className="mb-1 flex flex-wrap items-center gap-3">
-                  <h3 className="text-xl text-[var(--color-text-primary)]">{item.title}</h3>
+                  <h3 className="text-xl text-text-primary">{item.title}</h3>
                   {item.status === 'in-development' && (
-                    <span className="text-xs text-[var(--color-text-subtle)]">In development</span>
+                    <span className="text-xs text-text-subtle">In development</span>
                   )}
                 </div>
-                <p className="mb-5 max-w-xl text-sm leading-relaxed text-[var(--color-text-muted)]">
+                <p className="mb-5 max-w-xl text-sm leading-relaxed text-text-muted">
                   {item.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-sm px-2.5 py-0.5 text-xs text-[var(--color-text-muted)] ring-1 ring-[var(--color-border-emphasis)]"
+                      className="rounded-sm px-2.5 py-0.5 text-xs text-text-muted ring-1 ring-border-emphasis"
                     >
                       {tag}
                     </span>
@@ -93,7 +93,7 @@ function Work(): React.JSX.Element {
                     {...(item.link.startsWith('http')
                       ? { target: '_blank', rel: 'noopener noreferrer' }
                       : {})}
-                    className="text-sm text-[var(--color-text-subtle)] transition-colors hover:text-[var(--color-accent)]"
+                    className="text-sm text-text-subtle transition-colors hover:text-accent"
                   >
                     {item.linkLabel}
                   </a>

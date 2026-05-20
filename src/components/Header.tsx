@@ -60,7 +60,7 @@ function Header(): React.JSX.Element {
       <a
         key={item.href}
         href={item.href}
-        className="rounded px-3 py-1.5 text-base font-medium text-[var(--color-text-muted)] transition-colors hover:bg-white/10 hover:text-[var(--color-text-primary)]"
+        className="rounded px-3 py-1.5 text-base font-medium text-text-muted transition-colors hover:bg-white/10 hover:text-text-primary"
         onClick={(e) => handleNavClick(e, item)}
       >
         {item.label}
@@ -73,7 +73,7 @@ function Header(): React.JSX.Element {
       <a
         key={item.href}
         href={item.href}
-        className="rounded px-3 py-1.5 text-base font-medium text-[var(--color-text-muted)] transition-colors hover:bg-white/10 hover:text-[var(--color-text-primary)]"
+        className="rounded px-3 py-1.5 text-base font-medium text-text-muted transition-colors hover:bg-white/10 hover:text-text-primary"
         onClick={(e) => {
           handleNavClick(e, item);
           setMenuOpen(false);
@@ -85,7 +85,7 @@ function Header(): React.JSX.Element {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-bg-primary)] shadow-sm">
+    <header className="sticky top-0 z-50 border-b border-border bg-(--color-bg-primary) shadow-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link
           to="/"
@@ -114,7 +114,7 @@ function Header(): React.JSX.Element {
         <nav
           ref={mobileNavRef}
           id="mobile-nav"
-          className="flex flex-col gap-3 border-t border-[var(--color-border)] bg-[var(--color-bg-primary)] px-6 pb-4 lg:hidden"
+          className="flex flex-col gap-3 border-t border-border bg-(--color-bg-primary) px-6 pb-4 lg:hidden"
           aria-label="Primary mobile"
         >
           {siteNavLinks.map(renderMobileLink)}
