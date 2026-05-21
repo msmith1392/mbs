@@ -1,33 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-type ServiceItem = {
-  index: string;
-  name: string;
-  description: string;
-};
-
-const serviceItems: ServiceItem[] = [
-  {
-    index: '01',
-    name: 'Custom Software',
-    description:
-      'If your business needs software built around how it actually works, I scope it, build it, and hand it off. I have built order management systems, web portals, and internal tools for businesses in Kentucky. Cost is locked in before any work begins.',
-  },
-  {
-    index: '02',
-    name: 'Existing Systems',
-    description:
-      'If your business runs on software that is failing or falling behind, I can get it working again or tell you honestly whether it is worth fixing.',
-  },
-  {
-    index: '03',
-    name: 'Custom Website Builds',
-    description:
-      'I design and build your site from scratch that is fast, secure, and built to represent your business the way you want it. Your site will hold up as your business grows. Hosting and maintenance plans available if you want to hand that off.',
-  },
-];
-
 type Step = {
   number: string;
   label: string;
@@ -69,7 +42,7 @@ const steps: Step[] = [
 function ServicesPage(): React.JSX.Element {
   return (
     <>
-      {/* Intro */}
+      {/* Conversational Intro */}
       <section className="bg-(--color-bg-primary) px-6 py-12">
         <div className="mx-auto max-w-5xl">
           <div className="mb-8">
@@ -80,84 +53,71 @@ function ServicesPage(): React.JSX.Element {
               &larr; Back
             </Link>
           </div>
-          <h1 className="mb-6 text-5xl font-normal leading-[1.05]">
-            Working with businesses in Kentucky.
-          </h1>
-          <p className="max-w-xl text-base leading-relaxed text-text-muted">
-            I build software for businesses in Kentucky that do not have an engineer on staff. The
-            first conversation is free.
+          <h1 className="mb-8 text-5xl font-normal leading-[1.05]">How I can help</h1>
+          <p className="mb-8 text-base leading-relaxed text-text-muted">
+            I work with small businesses, nonprofits, and local organizations to build websites,
+            modernize software, and solve technical problems. If you need a new site, want to
+            automate a process, or just need advice, I'm happy to help.
           </p>
         </div>
       </section>
 
-      {/* Services items */}
+      {/* Services List - simplified, direct */}
       <section className="bg-(--color-bg-primary) px-6 py-12">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-12 text-3xl text-text-primary">What I work on</h2>
-          <div>
-            {serviceItems.map((item) => (
-              <div
-                key={item.index}
-                className="flex flex-col gap-4 border-t border-border py-8 sm:flex-row sm:items-start sm:gap-10"
-              >
-                <span className="font-['Instrument_Serif',serif] text-4xl font-normal leading-none text-text-subtle sm:w-12 sm:shrink-0">
-                  {item.index}
-                </span>
-                <div
-                  className="hidden w-px self-stretch bg-border-emphasis sm:block"
-                  aria-hidden="true"
-                />
-                <div>
-                  <h3 className="mb-2 text-xl text-text-primary">{item.name}</h3>
-                  <p className="max-w-prose text-sm leading-relaxed text-text-muted">
-                    {item.description}
-                  </p>
-                </div>
+          <h2 className="mb-8 text-3xl text-text-primary">What I do</h2>
+          <p className="mb-8 text-base leading-relaxed text-text-muted">
+            After more than a decade building software for all kinds of teams, I've learned most
+            businesses just want someone who listens, solves the right problem, and keeps things
+            simple. Here's what I actually do for clients.
+          </p>
+          <ul className="space-y-12">
+            <li className="border-t border-border pt-12">
+              <div className="space-y-4">
+                <h3 className="text-xl text-text-primary">Software & Automation</h3>
+                <p className="text-sm leading-relaxed text-text-muted">
+                  Need a tool or process automated? I build custom software and internal tools to
+                  help your business run smoother. I'll always be honest about what's worth fixing
+                  or building.
+                </p>
               </div>
-            ))}
-            <div className="border-t border-border" aria-hidden="true" />
-          </div>
+            </li>
+            <li className="border-t border-border pt-12">
+              <div className="space-y-4">
+                <h3 className="text-xl text-text-primary">Custom Websites</h3>
+                <p className="text-sm leading-relaxed text-text-muted">
+                  I design and build fast, secure websites that represent your business the way you
+                  want. Hosting and maintenance are available if you want to hand that off.
+                </p>
+              </div>
+            </li>
+            <li className="border-t border-border pt-12">
+              <div className="space-y-4">
+                <h3 className="text-xl text-text-primary">Technical Consulting</h3>
+                <p className="text-sm leading-relaxed text-text-muted">
+                  Not sure what you need? I'm happy to talk through your ideas and help you figure
+                  out the best next step.
+                </p>
+              </div>
+            </li>
+          </ul>
+          <div className="border-t border-border mt-8" aria-hidden="true" />
         </div>
       </section>
 
-      {/* What to expect */}
-      <section className="bg-(--color-bg-primary) px-6 py-12">
+      {/* Contact / CTA - condensed */}
+      <section className="bg-(--color-bg-primary) px-6 pb-16 pt-12">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-12 text-3xl text-text-primary">What to expect</h2>
-          <div>
-            {steps.map((step) => (
-              <div
-                key={step.number}
-                className="flex flex-col gap-4 border-t border-border py-8 sm:flex-row sm:items-center sm:gap-10"
-              >
-                <span className="font-['Instrument_Serif',serif] text-4xl font-normal leading-none text-accent sm:w-12 sm:shrink-0">
-                  {step.number}
-                </span>
-                <div className="flex-1">
-                  <h3 className="mb-2 text-xl text-text-primary">{step.label}</h3>
-                  <p className="text-sm leading-relaxed text-text-muted">{step.description}</p>
-                  <span className="mt-3 inline-block border border-border-emphasis px-3 py-1 text-xs uppercase tracking-widest text-text-subtle sm:hidden">
-                    {step.deliverable}
-                  </span>
-                </div>
-                <div className="hidden shrink-0 sm:block">
-                  <span className="border border-border-emphasis px-3 py-1 text-xs uppercase tracking-widest text-text-subtle">
-                    {step.deliverable}
-                  </span>
-                </div>
-              </div>
-            ))}
-            <div className="border-t border-border" aria-hidden="true" />
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-(--color-bg-primary) px-6 pb-16 pt-4">
-        <div className="mx-auto max-w-5xl border-t border-border pt-10">
-          <h2 className="mb-4 text-3xl font-normal text-text-primary">Ready to talk?</h2>
-          <p className="mb-3 text-text-muted">
-            The first conversation is free.{' '}
+          <h2 className="mb-8 text-3xl font-normal text-text-primary">Contact</h2>
+          <p className="mb-8 text-base leading-relaxed text-text-muted">
+            If you reach out, we’ll talk about what you need. I’ll put together a clear plan and let
+            you know what it’ll cost. You’ll always know what’s going on, and you can ask me
+            anything along the way.
+          </p>
+          <p className="mb-2 text-base leading-relaxed text-text-muted">
+            The first conversation is always free.
+          </p>
+          <p className="mb-2 text-base leading-relaxed">
             <a
               href="mailto:matt@matthewbsmith.com"
               className="text-accent underline underline-offset-2 transition-colors hover:text-accent-hover"
@@ -166,8 +126,8 @@ function ServicesPage(): React.JSX.Element {
             </a>
           </p>
           <p className="text-sm text-text-subtle">
-            Tell me about your business, what you need, and your timeline. That is enough to get
-            started.
+            Tell me about your business, what you need, or just say hello. I'll get back to you as
+            soon as I can.
           </p>
         </div>
       </section>

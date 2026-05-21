@@ -38,10 +38,18 @@ function Hero(): React.JSX.Element {
             {/* CTA */}
             <div className="flex flex-col items-start gap-3">
               <a
-                href="#contact"
+                href="mailto:matt@matthewbsmith.com"
                 className="inline-block rounded-none bg-accent px-8 py-3 font-semibold text-(--color-text-on-accent) transition-colors hover:bg-accent-hover"
               >
                 Get in touch
+              </a>
+              <a
+                href="/MatthewSmithResume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block rounded-none border border-accent px-8 py-3 font-semibold text-accent transition-colors hover:bg-accent hover:text-(--color-text-on-accent)"
+              >
+                Download Resume
               </a>
               <a
                 href="mailto:matt@matthewbsmith.com"
