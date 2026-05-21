@@ -1,44 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-type Step = {
-  number: string;
-  label: string;
-  description: string;
-  deliverable: string;
-};
-
-const steps: Step[] = [
-  {
-    number: '01',
-    label: 'Consult',
-    description:
-      'I start with a free conversation. You walk me through your business and the problems you are facing, and I determine whether I can actually solve your problem.',
-    deliverable: 'Free call',
-  },
-  {
-    number: '02',
-    label: 'Scope',
-    description:
-      'After the consultation, I scope the work and define what gets delivered, the timeline, and the cost. You will know exactly what you are getting before anything starts.',
-    deliverable: 'Written scope',
-  },
-  {
-    number: '03',
-    label: 'Build',
-    description:
-      'While I build, you get regular updates and direct access to me. If I need your input, I ask before making assumptions.',
-    deliverable: 'Direct access',
-  },
-  {
-    number: '04',
-    label: 'Ship and support',
-    description:
-      'Once work is finished, I will walk you through the final product before handing it off. If you need them, ongoing maintenance, updates, and support are available on an hourly basis.',
-    deliverable: 'Stays available',
-  },
-];
-
 function ServicesPage(): React.JSX.Element {
   return (
     <>
