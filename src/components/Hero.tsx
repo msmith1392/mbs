@@ -32,7 +32,7 @@ function Hero(): React.JSX.Element {
             {/* Availability badge */}
             <div className="mb-8 inline-flex items-center gap-2 rounded-sm border border-border-emphasis px-3 py-1.5 text-xs text-text-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
-              Open to W2 and C2C roles
+              Open to new roles
             </div>
 
             {/* CTA */}

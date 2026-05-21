@@ -6,7 +6,7 @@ function Contact(): React.JSX.Element {
       <div className="mx-auto max-w-5xl">
         <h2 className="mb-4 text-3xl font-normal text-text-primary">Get in Touch</h2>
         <p className="text-text-muted">
-          Have a project or role you think I would be a good fit for? Let&#39;s get in touch:{' '}
+          Have a role you think I would be a good fit for? Let&#39;s get in touch:{' '}
           <a
             href="mailto:matt@matthewbsmith.com"
             className="text-accent underline underline-offset-2 transition-colors hover:text-accent-hover"

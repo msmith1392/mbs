@@ -57,7 +57,7 @@ function Footer(): React.JSX.Element {
     <footer className="border-t border-border bg-(--color-bg-primary) px-6 py-14 text-text-primary">
       <div className="mx-auto max-w-6xl text-center">
         <img src={mbscWordmarkSm} alt="Matthew B. Smith" className="mx-auto h-6 w-auto" />
-        <p className="mt-3 text-sm text-text-muted">Software engineering. Somerset, KY.</p>
+        <p className="mt-3 text-sm text-text-muted">Senior Software Engineer. Somerset, KY.</p>
         <div className="mt-6 flex items-center justify-center gap-5">
           <a
             href="https://www.linkedin.com/in/matthew-smith-22310b111/"

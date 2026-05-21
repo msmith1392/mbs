@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useYearsOfExperience from '../hooks/useYearsOfExperience';
 import { CAREER_START } from '../data/constants';
 
@@ -15,17 +16,13 @@ function About(): React.JSX.Element {
             management platforms, enterprise logistics systems, and cloud-native AWS infrastructure.
           </p>
           <p>
-            I am open to full-time and contract roles. I also build websites for local businesses in
-            the Somerset area. Current work:{' '}
-            <a
-              href="https://sproutky-demo.matthewbsmith.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            I also build software for local businesses and nonprofits throughout Kentucky.{' '}
+            <Link
+              to="/services"
               className="text-accent underline underline-offset-2 transition-colors hover:text-accent-hover"
             >
-              Sprout and Learn
-            </a>{' '}
-            (in development).
+              See how I can help.
+            </Link>
           </p>
         </div>
       </div>

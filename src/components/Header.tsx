@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import msbcWordmark from '../assets/mbsc-wordmark.svg'; // SVG wordmark
 import { siteNavLinks } from '../data/siteNav';
 import type { SiteNavLink } from '../data/siteNav';
@@ -10,6 +10,7 @@ function Header(): React.JSX.Element {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileNavRef = useRef<HTMLDivElement>(null);
   const prevMenuOpen = useRef<boolean>(false);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     if (prevMenuOpen.current && !menuOpen) {
@@ -51,6 +52,9 @@ function Header(): React.JSX.Element {
   }, [menuOpen]);
 
   function handleNavClick(e: React.MouseEvent<HTMLAnchorElement>, item: SiteNavLink): void {
+    if (pathname !== '/') {
+      return;
+    }
     e.preventDefault();
     document.getElementById(item.sectionId)?.scrollIntoView({ behavior: 'smooth' });
   }
@@ -96,21 +100,23 @@ function Header(): React.JSX.Element {
           <img src={msbcWordmark} alt="Matthew B. Smith Consulting" className="h-8 w-auto" />
         </Link>
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
-          {siteNavLinks.map(renderDesktopLink)}
+          {pathname === '/' && siteNavLinks.map(renderDesktopLink)}
         </nav>
-        <button
-          ref={menuButtonRef}
-          type="button"
-          className="text-gray-300 lg:hidden"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-nav"
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-        >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {pathname === '/' && (
+          <button
+            ref={menuButtonRef}
+            type="button"
+            className="text-gray-300 lg:hidden"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        )}
       </div>
-      {menuOpen && (
+      {menuOpen && pathname === '/' && (
         <nav
           ref={mobileNavRef}
           id="mobile-nav"

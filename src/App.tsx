@@ -5,6 +5,7 @@ import SkipToMain from './components/SkipToMain';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/Home';
+import ServicesPage from './pages/Services';
 import NotFound from './pages/NotFound';
 
 function App(): React.JSX.Element {
@@ -21,6 +22,7 @@ function App(): React.JSX.Element {
         >
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/services" element={<ServicesPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
