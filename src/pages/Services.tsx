@@ -1,10 +1,69 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+type ServiceItem = {
+  category: string;
+  title: string;
+  description: string;
+};
+
+const serviceItems: ServiceItem[] = [
+  {
+    category: 'Software & systems',
+    title: 'Custom software',
+    description:
+      'I build custom software when off-the-shelf tools are not enough. You get a fixed price before work starts.',
+  },
+  {
+    category: 'Existing systems',
+    title: 'Repair and modernization',
+    description:
+      'If you run on software that is failing or falling behind, I can get it working again or tell you honestly whether it is worth fixing.',
+  },
+  {
+    category: 'Websites',
+    title: 'Custom website builds',
+    description:
+      'When a site is the right deliverable, I design and build it to be fast, secure, and easy to maintain. Hosting and maintenance are available if you want to hand that off.',
+  },
+];
+
+type ProcessStep = {
+  title: string;
+  description: string;
+  deliverable: string;
+};
+
+const processSteps: ProcessStep[] = [
+  {
+    title: 'Consult',
+    description:
+      'I start with a free conversation. You walk me through the problem you are facing, and I determine whether I can actually solve it.',
+    deliverable: 'Free call',
+  },
+  {
+    title: 'Scope',
+    description:
+      'After the consultation, I scope the work and define what gets delivered, the timeline, and the cost. You will know exactly what you are getting before anything starts.',
+    deliverable: 'Written scope',
+  },
+  {
+    title: 'Build',
+    description:
+      'While I build, you get regular updates and direct access to me. If I need your input, I ask before making assumptions.',
+    deliverable: 'Direct access',
+  },
+  {
+    title: 'Ship and support',
+    description:
+      'Once work is finished, I walk you through the final product before handing it off. Ongoing maintenance, updates, and support are available on an hourly basis if you need them.',
+    deliverable: 'Stays available',
+  },
+];
+
 function ServicesPage(): React.JSX.Element {
   return (
     <>
-      {/* Conversational Intro */}
       <section className="bg-(--color-bg-primary) px-6 py-12">
         <div className="mx-auto max-w-5xl">
           <div className="mb-8">
@@ -15,71 +74,60 @@ function ServicesPage(): React.JSX.Element {
               &larr; Back
             </Link>
           </div>
-          <h1 className="mb-8 text-5xl font-normal leading-[1.05]">How I can help</h1>
-          <p className="mb-8 text-base leading-relaxed text-text-muted">
-            I work with small businesses, nonprofits, and local organizations to build websites,
-            modernize software, and solve technical problems. If you need a new site, want to
-            automate a process, or just need advice, I'm happy to help.
+          <h1 className="mb-6 text-5xl font-normal leading-[1.05]">
+            Working with organizations in Kentucky.
+          </h1>
+          <p className="text-base leading-relaxed text-text-muted">
+            I build software for teams that do not have an engineer on staff: local government,
+            nonprofits, and small businesses. The first conversation is free.
           </p>
         </div>
       </section>
 
-      {/* Services List - simplified, direct */}
       <section className="bg-(--color-bg-primary) px-6 py-12">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-8 text-3xl text-text-primary">What I do</h2>
-          <p className="mb-8 text-base leading-relaxed text-text-muted">
-            After more than a decade building software for all kinds of teams, I've learned most
-            businesses just want someone who listens, solves the right problem, and keeps things
-            simple. Here's what I actually do for clients.
-          </p>
-          <ul className="space-y-12">
-            <li className="border-t border-border pt-12">
-              <div className="space-y-4">
-                <h3 className="text-xl text-text-primary">Software & Automation</h3>
-                <p className="text-sm leading-relaxed text-text-muted">
-                  Need a tool or process automated? I build custom software and internal tools to
-                  help your business run smoother. I'll always be honest about what's worth fixing
-                  or building.
+          <h2 className="mb-12 text-3xl text-text-primary">What I work on</h2>
+          <div>
+            {serviceItems.map((item) => (
+              <div key={item.title} className="border-t border-border py-10">
+                <p className="mb-2 text-xs uppercase tracking-widest text-text-subtle">
+                  {item.category}
                 </p>
+                <h3 className="mb-2 text-xl text-text-primary">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-text-muted">{item.description}</p>
               </div>
-            </li>
-            <li className="border-t border-border pt-12">
-              <div className="space-y-4">
-                <h3 className="text-xl text-text-primary">Custom Websites</h3>
-                <p className="text-sm leading-relaxed text-text-muted">
-                  I design and build fast, secure websites that represent your business the way you
-                  want. Hosting and maintenance are available if you want to hand that off.
-                </p>
-              </div>
-            </li>
-            <li className="border-t border-border pt-12">
-              <div className="space-y-4">
-                <h3 className="text-xl text-text-primary">Technical Consulting</h3>
-                <p className="text-sm leading-relaxed text-text-muted">
-                  Not sure what you need? I'm happy to talk through your ideas and help you figure
-                  out the best next step.
-                </p>
-              </div>
-            </li>
-          </ul>
-          <div className="border-t border-border mt-8" aria-hidden="true" />
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Contact / CTA - condensed */}
-      <section className="bg-(--color-bg-primary) px-6 pb-16 pt-12">
+      <section className="bg-(--color-bg-primary) px-6 py-12">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-8 text-3xl font-normal text-text-primary">Contact</h2>
-          <p className="mb-8 text-base leading-relaxed text-text-muted">
-            If you reach out, we’ll talk about what you need. I’ll put together a clear plan and let
-            you know what it’ll cost. You’ll always know what’s going on, and you can ask me
-            anything along the way.
-          </p>
-          <p className="mb-2 text-base leading-relaxed text-text-muted">
-            The first conversation is always free.
-          </p>
-          <p className="mb-2 text-base leading-relaxed">
+          <h2 className="mb-12 text-3xl text-text-primary">What to expect</h2>
+          <div>
+            {processSteps.map((step) => (
+              <div
+                key={step.title}
+                className="border-t border-border py-10 sm:flex sm:items-start sm:justify-between sm:gap-12"
+              >
+                <div className="flex-1">
+                  <h3 className="mb-2 text-xl text-text-primary">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-text-muted">{step.description}</p>
+                </div>
+                <p className="mt-4 shrink-0 text-xs uppercase tracking-widest text-text-subtle sm:mt-0 sm:text-right">
+                  {step.deliverable}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-(--color-bg-primary) px-6 pb-16 pt-4">
+        <div className="mx-auto max-w-5xl border-t border-border pt-10">
+          <h2 className="mb-4 text-3xl font-normal text-text-primary">Ready to talk?</h2>
+          <p className="text-text-muted">
+            The first conversation is free.{' '}
             <a
               href="mailto:matt@matthewbsmith.com"
               className="text-accent underline underline-offset-2 transition-colors hover:text-accent-hover"
@@ -87,9 +135,9 @@ function ServicesPage(): React.JSX.Element {
               matt@matthewbsmith.com
             </a>
           </p>
-          <p className="text-sm text-text-subtle">
-            Tell me about your business, what you need, or just say hello. I'll get back to you as
-            soon as I can.
+          <p className="mt-3 text-sm text-text-subtle">
+            Tell me about your organization, what you need, and your timeline. That is enough to get
+            started.
           </p>
         </div>
       </section>

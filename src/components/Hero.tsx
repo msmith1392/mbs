@@ -14,7 +14,7 @@ function Hero(): React.JSX.Element {
             <div className="mb-6 flex items-center gap-3">
               <span className="inline-block h-px w-8 bg-accent" aria-hidden="true" />
               <span className="text-xs uppercase tracking-widest text-text-subtle">
-                Somerset, KY &middot; Available remotely
+                Somerset, KY &middot; Open to new roles
               </span>
             </div>
 
@@ -29,34 +29,24 @@ function Hero(): React.JSX.Element {
               private sector. Currently consulting at 4 Arrows.
             </p>
 
-            {/* Availability badge */}
-            <div className="mb-8 inline-flex items-center gap-2 rounded-sm border border-border-emphasis px-3 py-1.5 text-xs text-text-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" aria-hidden="true" />
-              Open to new roles
-            </div>
-
             {/* CTA */}
             <div className="flex flex-col items-start gap-3">
-              <a
-                href="mailto:matt@matthewbsmith.com"
-                className="inline-block rounded-none bg-accent px-8 py-3 font-semibold text-(--color-text-on-accent) transition-colors hover:bg-accent-hover"
-              >
-                Get in touch
-              </a>
-              <a
-                href="/MatthewSmithResume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block rounded-none border border-accent px-8 py-3 font-semibold text-accent transition-colors hover:bg-accent hover:text-(--color-text-on-accent)"
-              >
-                Download Resume
-              </a>
-              <a
-                href="mailto:matt@matthewbsmith.com"
-                className="text-sm text-text-subtle transition-colors hover:text-accent"
-              >
-                matt@matthewbsmith.com
-              </a>
+              <div className="flex flex-col gap-2 sm:flex-row sm:gap-4">
+                <a
+                  href="/MatthewSmithResume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-text-subtle transition-colors hover:text-accent"
+                >
+                  Download resume
+                </a>
+                <a
+                  href="mailto:matt@matthewbsmith.com"
+                  className="text-sm text-text-subtle transition-colors hover:text-accent"
+                >
+                  matt@matthewbsmith.com
+                </a>
+              </div>
             </div>
           </div>
 
@@ -68,7 +58,7 @@ function Hero(): React.JSX.Element {
               width={960}
               height={958}
               fetchPriority="high"
-              className="w-64 rounded-xl object-cover lg:w-72"
+              className="w-64 rounded-sm object-cover lg:w-72"
             />
           </div>
         </div>

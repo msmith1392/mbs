@@ -1,14 +1,16 @@
-# CLAUDE.md - Matthew B. Smith Consulting Site
+# CLAUDE.md - Matthew B. Smith (matthewbsmith.com)
 
-Personal consulting site for matthewbsmith.com. Built with React,
-TypeScript, Vite, and Tailwind CSS. Hosted on Cloudflare Workers.
+Personal site for matthewbsmith.com. Primary audience: W2 and C2C recruiters.
+Secondary audience: local organizations and selective client work in Kentucky.
+Built with React, TypeScript, Vite, and Tailwind CSS. Hosted on Cloudflare Workers
+(static assets, SPA routing).
 
 ## Project Structure
 
 ```
 src/
   components/    # Page sections and UI components
-  pages/         # Full page components (Home, NotFound)
+  pages/         # Home, Services, NotFound
   assets/        # SVG source files
     demo-cards/  # Portfolio screenshot PNGs
   data/          # constants.ts (CAREER_START, FEDERAL_START), siteNav.ts
@@ -16,9 +18,6 @@ src/
   index.css      # Tailwind entry point + theme tokens
   main.tsx       # Entry point
   App.tsx        # Router and layout
-functions/
-  api/
-    contact.ts   # Cloudflare Worker handling POST /api/contact via Resend
 public/          # favicon.png, og-image.png, robots.txt, sitemap.xml, MatthewSmithResume.pdf
 ```
 
@@ -28,13 +27,13 @@ public/          # favicon.png, og-image.png, robots.txt, sitemap.xml, MatthewSm
 - Styling: Tailwind CSS v4 via @tailwindcss/vite plugin
 - Routing: React Router v7 (BrowserRouter)
 - Icons: Lucide React
-- Email: Resend API via Cloudflare Worker function
 - Deployment: Cloudflare Workers with static assets, custom domain via Cloudflare
 
 ## Site Architecture
 
-Single-page React app. React Router v7 handles routing. Pages:
+React SPA. React Router v7 handles routing. Pages:
 - `/` — Homepage (Hero, Work, Experience, About, Contact)
+- `/services` — Local client work (linked from About, not in header nav)
 - `*` — 404 NotFound
 
 ## Design System
@@ -59,22 +58,13 @@ There is no alternating section background pattern. All page sections use
 `bg-[var(--color-bg-primary)]`. Borders between content blocks use
 `border-[var(--color-border)]`.
 
-Homepage section background sequence:
-- Header: bg-[var(--color-bg-primary)]
-- Hero: bg-[var(--color-bg-primary)]
-- Work: bg-[var(--color-bg-primary)]
-- Experience: bg-[var(--color-bg-primary)]
-- About: bg-[var(--color-bg-primary)]
-- Contact: bg-[var(--color-bg-primary)]
-- Footer: bg-[var(--color-bg-primary)]
-
 body { background-color: #0f1117 } set in index.css to prevent white overscroll on iOS.
 
 ## Typography
 
 - Headings (h1, h2, h3): Instrument Serif, font-weight: 400
 - Body copy: Inter, font-weight: 400 or 500
-- Both fonts loaded from Google Fonts via @import in index.css
+- Both fonts loaded via @fontsource packages in index.css
 
 ## Voice and Tone
 
@@ -82,13 +72,17 @@ This is a solo developer personal brand site. Every instance of "we", "our",
 "us" is a bug. All copy uses first-person singular: "I", "my", "me".
 No em dashes anywhere. No AI-sounding copy.
 
+Do not frame the site as "Matthew B. Smith Consulting" or an LLC brand. The
+wordmark reads MATTHEW B. SMITH; the site is a personal portfolio.
+
 ## Header
 
 - SVG wordmark (mbsc-wordmark.svg at h-8)
 - Scroll-based nav: clicking a link smoothly scrolls to the section via scrollIntoView
 - Mobile menu with focus trap and keyboard navigation
 - Sticky, dark background
-- Nav order: Work, Experience, Contact
+- Nav order: Work, Experience, About, Contact
+- Nav links only render on `/` (homepage)
 
 ## Assets
 
@@ -113,15 +107,16 @@ capture at 512x512, save to public/favicon.png.
 
 ## Components
 
-- Hero.tsx — two-column hero on desktop (flex-row), single column on mobile (flex-col-reverse); left has eyebrow, heading, body, availability badge, CTA, email link; right has photo (photo1.jpg)
+- Hero.tsx — two-column hero on desktop (flex-row), single column on mobile (flex-col-reverse); eyebrow, heading, body, resume + mailto links, headshot
 - Work.tsx — work/portfolio section with three items; uses useYearsOfExperience for the FEMA item description
 - Experience.tsx — career timeline, four roles rendered from a data array
-- About.tsx — brief bio and availability statement
-- Contact.tsx — simple contact section with email link
+- About.tsx — brief bio; link to /services ("See how I can help.")
+- Contact.tsx — simple contact section with mailto email link
 - Header.tsx — sticky nav with wordmark, scroll-based nav links, mobile hamburger menu
 - Footer.tsx — centered name, tagline, icon links (LinkedIn, GitHub, Email, Resume), copyright
 - SkipToMain.tsx — visually hidden skip link for keyboard/screen reader users
 - ScrollToTop.tsx — scrolls to top on route change
+- pages/Services.tsx — local client work; Work-style rows, no numbered index columns
 
 ## TypeScript Standards
 
@@ -130,7 +125,6 @@ capture at 512x512, save to public/favicon.png.
 - noImplicitReturns
 - noFallthroughCasesInSwitch
 - All variables and function return types explicitly typed
-- Worker functions use tsconfig.worker.json with @cloudflare/workers-types
 - React components use tsconfig.app.json with vite/client types
 
 ## Code Style
@@ -150,15 +144,11 @@ capture at 512x512, save to public/favicon.png.
 - Tone: credible, professional, personal — solo dev voice throughout
 - No em dashes anywhere
 
-## Contact Form
+## Contact
 
-- POSTs to /api/contact, handled by functions/api/contact.ts
-- Uses Resend API
-- Honeypot field: hidden input named "website", must be empty on submit
-- Project type options: Technical Consulting, Custom Website, Not Sure Yet
-- projectType is required — validation rejects empty selection
-- RESEND_API_KEY stored as Cloudflare Worker secret
-- reply_to set to matt@matthewbsmith.com
+- Homepage Contact section uses a mailto link to matt@matthewbsmith.com
+- No contact form is deployed at this time
+- A prior Resend/Worker contact API may be reintroduced later; do not document it as live
 
 ## Accessibility
 
@@ -172,16 +162,14 @@ capture at 512x512, save to public/favicon.png.
 - BrowserRouter (not HashRouter)
 - SPA routing via wrangler.json: not_found_handling: single-page-application
 - No _redirects file needed
-- Worker entry point: functions/api/contact.ts
+- wrangler.json serves static assets only (no Worker API entry)
 - Deploy: git push to main triggers auto-deploy via Cloudflare Workers Builds
 
 ## Local Development
 
-- Run `wrangler dev` to test Worker functions locally
-- Create `.dev.vars` at project root: RESEND_API_KEY=your_key_here
-- `.dev.vars` and `.wrangler` are gitignored
-- `npm run dev` is fine for UI-only work
-- Emails send for real during local testing via Resend
+- `npm run dev` for UI work
+- `npm run build && wrangler dev` to preview the production build locally
+- `.wrangler` is gitignored
 
 ## DNS Configuration
 

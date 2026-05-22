@@ -1,23 +1,22 @@
-# Matthew B. Smith Consulting
+# Matthew B. Smith
 
-Personal consulting site for [matthewbsmith.com](https://matthewbsmith.com).
-Built with React, TypeScript, Vite, and Tailwind CSS. Deployed on Cloudflare Workers.
+Personal site for [matthewbsmith.com](https://matthewbsmith.com). Portfolio and resume
+for senior software engineering roles, with a secondary page for local client work.
+Built with React, TypeScript, Vite, and Tailwind CSS. Deployed on Cloudflare Workers
+(static assets only).
 
 ## Development
 
 ```bash
 npm install
-wrangler dev
+npm run dev
 ```
 
-Use `wrangler dev` instead of `npm run dev` to test Worker functions (contact form)
-locally. Create a `.dev.vars` file at the project root:
+For a production-like preview of the built site:
 
+```bash
+npm run build && wrangler dev
 ```
-RESEND_API_KEY=your_resend_api_key_here
-```
-
-For UI-only work without the contact form, `npm run dev` is fine.
 
 ## Deployment
 
@@ -34,22 +33,23 @@ npm run build && wrangler deploy
 - Tailwind CSS v4
 - React Router v7 (BrowserRouter)
 - Lucide React (icons)
-- Resend API via Cloudflare Worker (contact form)
-- Cloudflare Workers + static assets
+- Cloudflare Workers (static asset hosting, SPA routing)
+
+## Routes
+
+- `/` — Homepage (Hero, Work, Experience, About, Contact)
+- `/services` — Local client work (linked from About)
+- `*` — 404
+
+## Contact
+
+Homepage contact is a `mailto:` link to matt@matthewbsmith.com. There is no contact
+form on the site at this time.
 
 ## Branch Strategy
 
 - `main` — production, auto-deploys to matthewbsmith.com
 - Feature branches merged to main via PR
-
-## Contact Form
-
-Handled by `functions/api/contact.ts` via Resend API.
-`RESEND_API_KEY` must be set as a Cloudflare Workers secret:
-
-```bash
-wrangler secret put RESEND_API_KEY
-```
 
 ## Assets
 

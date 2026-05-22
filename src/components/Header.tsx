@@ -97,7 +97,7 @@ function Header(): React.JSX.Element {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           {/* SVG wordmark */}
-          <img src={msbcWordmark} alt="Matthew B. Smith Consulting" className="h-8 w-auto" />
+          <img src={msbcWordmark} alt="Matthew B. Smith" className="h-8 w-auto" />
         </Link>
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
           {pathname === '/' && siteNavLinks.map(renderDesktopLink)}
@@ -106,7 +106,7 @@ function Header(): React.JSX.Element {
           <button
             ref={menuButtonRef}
             type="button"
-            className="text-gray-300 lg:hidden"
+            className="text-text-muted lg:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
