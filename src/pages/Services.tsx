@@ -106,17 +106,12 @@ function ServicesPage(): React.JSX.Element {
           <h2 className="mb-12 text-3xl text-text-primary">What to expect</h2>
           <div>
             {processSteps.map((step) => (
-              <div
-                key={step.title}
-                className="border-t border-border py-10 sm:flex sm:items-start sm:justify-between sm:gap-12"
-              >
-                <div className="flex-1">
-                  <h3 className="mb-2 text-xl text-text-primary">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-text-muted">{step.description}</p>
-                </div>
-                <p className="mt-4 shrink-0 text-xs uppercase tracking-widest text-text-subtle sm:mt-0 sm:text-right">
+              <div key={step.title} className="border-t border-border py-10">
+                <p className="mb-2 text-xs uppercase tracking-widest text-text-subtle">
                   {step.deliverable}
                 </p>
+                <h3 className="mb-2 text-xl text-text-primary">{step.title}</h3>
+                <p className="text-sm leading-relaxed text-text-muted">{step.description}</p>
               </div>
             ))}
           </div>
