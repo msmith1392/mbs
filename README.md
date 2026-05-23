@@ -24,7 +24,8 @@ Pushes to `main` auto-deploy via Cloudflare Workers Builds.
 For manual deployment:
 
 ```bash
-npm run build && wrangler deploy
+npm run build
+wrangler deploy
 ```
 
 ## Stack

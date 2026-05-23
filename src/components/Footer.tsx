@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Mail } from 'lucide-react';
 import mbscWordmarkSm from '../assets/mbsc-wordmark-sm.svg';
 
@@ -53,10 +54,20 @@ function ResumeIcon(): React.JSX.Element {
 }
 
 function Footer(): React.JSX.Element {
+  const { pathname } = useLocation();
+
+  const handleWordmarkClick = () => {
+    if (pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="border-t border-border bg-(--color-bg-primary) px-6 py-14 text-text-primary">
       <div className="mx-auto max-w-6xl text-center">
-        <img src={mbscWordmarkSm} alt="Matthew B. Smith" className="mx-auto h-6 w-auto" />
+        <Link to="/" onClick={handleWordmarkClick} className="inline-block">
+          <img src={mbscWordmarkSm} alt="Matthew B. Smith" className="mx-auto h-6 w-auto" />
+        </Link>
         <p className="mt-3 text-sm text-text-muted">Senior Software Engineer. Somerset, KY.</p>
         <div className="mt-6 flex items-center justify-center gap-5">
           <a

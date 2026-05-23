@@ -94,12 +94,15 @@ function Header(): React.JSX.Element {
         <Link
           to="/"
           className="flex items-center gap-1"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => {
+            if (pathname === '/') {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }}
         >
-          {/* SVG wordmark */}
           <img src={msbcWordmark} alt="Matthew B. Smith" className="h-8 w-auto" />
         </Link>
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-4 lg:flex" aria-label="Primary">
           {pathname === '/' && siteNavLinks.map(renderDesktopLink)}
         </nav>
         {pathname === '/' && (

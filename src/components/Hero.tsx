@@ -14,19 +14,20 @@ function Hero(): React.JSX.Element {
             <div className="mb-6 flex items-center gap-3">
               <span className="inline-block h-px w-8 bg-accent" aria-hidden="true" />
               <span className="text-xs uppercase tracking-widest text-text-subtle">
-                Somerset, KY &middot; Open to new roles
+                Somerset, KY
               </span>
             </div>
 
             {/* Heading */}
             <h1 className="mb-8 text-5xl font-normal leading-[1.05] lg:text-7xl">
-              Senior software engineer.
+              Senior Software Engineer.
             </h1>
 
             {/* Body */}
             <p className="mb-8 max-w-xl text-base text-text-muted lg:text-lg">
-              {totalYears} years building production systems for FEMA, UPS, and clients across the
-              private sector. Currently consulting at 4 Arrows.
+              I have spent {totalYears} years building production software for FEMA, UPS, and
+              private-sector clients, usually in places where reporting accuracy, uptime, and
+              maintainable systems mattered. Currently on contract at 4 Arrows Consulting.
             </p>
 
             {/* CTA */}

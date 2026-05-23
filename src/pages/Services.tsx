@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LabeledEntry from '../components/LabeledEntry';
 
 type ServiceItem = {
   category: string;
@@ -12,7 +13,7 @@ const serviceItems: ServiceItem[] = [
     category: 'Software & systems',
     title: 'Custom software',
     description:
-      'I build custom software when off-the-shelf tools are not enough. You get a fixed price before work starts.',
+      'I build custom software when off-the-shelf tools are not enough, with a written scope and fixed price before work starts.',
   },
   {
     category: 'Existing systems',
@@ -24,7 +25,7 @@ const serviceItems: ServiceItem[] = [
     category: 'Websites',
     title: 'Custom website builds',
     description:
-      'When a site is the right deliverable, I design and build it to be fast, secure, and easy to maintain. Hosting and maintenance are available if you want to hand that off.',
+      'When a site is the right deliverable, I design and build it with simple hosting, clear documentation, and fewer moving parts for teams without engineers on staff. Ongoing maintenance is available if you want someone to keep it updated.',
   },
 ];
 
@@ -89,13 +90,12 @@ function ServicesPage(): React.JSX.Element {
           <h2 className="mb-12 text-3xl text-text-primary">What I work on</h2>
           <div>
             {serviceItems.map((item) => (
-              <div key={item.title} className="border-t border-border py-10">
-                <p className="mb-2 text-xs uppercase tracking-widest text-text-subtle">
-                  {item.category}
-                </p>
-                <h3 className="mb-2 text-xl text-text-primary">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-text-muted">{item.description}</p>
-              </div>
+              <LabeledEntry
+                key={item.title}
+                label={item.category}
+                title={item.title}
+                description={item.description}
+              />
             ))}
           </div>
         </div>
@@ -106,13 +106,12 @@ function ServicesPage(): React.JSX.Element {
           <h2 className="mb-12 text-3xl text-text-primary">What to expect</h2>
           <div>
             {processSteps.map((step) => (
-              <div key={step.title} className="border-t border-border py-10">
-                <p className="mb-2 text-xs uppercase tracking-widest text-text-subtle">
-                  {step.deliverable}
-                </p>
-                <h3 className="mb-2 text-xl text-text-primary">{step.title}</h3>
-                <p className="text-sm leading-relaxed text-text-muted">{step.description}</p>
-              </div>
+              <LabeledEntry
+                key={step.title}
+                label={step.deliverable}
+                title={step.title}
+                description={step.description}
+              />
             ))}
           </div>
         </div>
