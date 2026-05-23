@@ -18,12 +18,12 @@ const roles: Role[] = [
     startDate: 'March 2019',
     endDate: 'Present',
     bullets: [
-      'Designed and built the Svelte frontend for a TypeScript monorepo of AWS serverless applications, giving FEMA program staff a unified access portal across PrepToolkit, RTLT, RIS, and OneResponder.',
-      "Built real-time presence tracking for the Unified Reporting Tool (URT), using distributed session logic and polling timeouts to reduce the risk of concurrent federal users overwriting each other's reporting data.",
+      'Designed and built the Svelte frontend for a TypeScript monorepo of AWS serverless applications serving as a unified access portal for FEMA platforms including PrepToolkit, RTLT, RIS, and OneResponder.',
+      'Built real-time presence tracking for the Unified Reporting Tool (URT), using session records, polling, and configurable timeout behavior to reduce accidental overwrite risk across concurrent federal users.',
       'Automated enterprise reporting with Docmosis and Apache POI, cutting processing time ' +
         'from hours to minutes for national emergency preparedness programs.',
-      'Delivered full-stack features across Spring Boot and .NET backends, MySQL schemas, and Svelte frontends, keeping API contracts, data models, and UI behavior aligned across the FEMA preparedness suite.',
-      'Translated FEMA program requirements (THIRA/SPR, CPG, NIMS, UAWG) into technical scope that engineering teams could ship while meeting federal compliance and security expectations.',
+      'Delivered full-stack features across Spring Boot and .NET backends, MySQL, and Svelte frontends within the FEMA preparedness platform suite.',
+      'Translated FEMA program requirements (THIRA/SPR, CPG, NIMS, UAWG) into technical solutions, coordinating with project leads to meet federal compliance and security standards.',
     ],
     techStack: [
       'Java',
@@ -46,8 +46,8 @@ const roles: Role[] = [
     startDate: 'March 2017',
     endDate: 'March 2019',
     bullets: [
-      'Engineered backend logic and UI features for real-time transportation visibility systems, maintaining operational uptime in a 24/7 high-throughput environment where downtime had direct business cost.',
-      'Modeled transportation policy in the Drools inference engine (BRMS), separating changing business rules from application code and reducing manual intervention.',
+      'Engineered backend logic and UI features for real-time transportation visibility systems in a 24/7 high-throughput production environment.',
+      'Translated business requirements into discrete rules for the Drools inference engine (BRMS), decoupling policy from application code and reducing manual intervention.',
       'Identified and resolved critical latency bottlenecks under peak traffic through targeted ' +
         'performance analysis with JMeter.',
     ],
@@ -60,8 +60,8 @@ const roles: Role[] = [
     startDate: 'March 2016',
     endDate: 'March 2017',
     bullets: [
-      'Built reusable backend components and modular UI features for clients including Presbyterian Church USA and the University of Kentucky, helping multiple projects ship without rebuilding the same foundations.',
-      'Turned stakeholder requirements into production REST APIs for client systems where the technical shape had to be clarified before implementation could start.',
+      'Built reusable backend components and modular UI features across multiple client projects, helping teams ship without rebuilding the same foundations.',
+      'Translated stakeholder requirements into production REST APIs for clients including Presbyterian Church USA and the University of Kentucky.',
       'Implemented server-side validation, authentication, and RBAC for sensitive event registration and CMS workflows.',
     ],
     techStack: ['Python', 'Django', 'JavaScript', 'PostgreSQL', 'PHP', 'Drupal', 'AWS'],

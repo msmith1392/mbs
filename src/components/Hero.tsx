@@ -26,8 +26,7 @@ function Hero(): React.JSX.Element {
             {/* Body */}
             <p className="mb-8 max-w-xl text-base text-text-muted lg:text-lg">
               I have spent {totalYears} years building production software for FEMA, UPS, and
-              private-sector clients, usually in places where reporting accuracy, uptime, and
-              maintainable systems mattered. Currently on contract at 4 Arrows Consulting.
+              private-sector clients. Currently on contract at 4 Arrows Consulting.
             </p>
 
             {/* CTA */}

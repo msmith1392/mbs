@@ -9,8 +9,8 @@ function HomePage(): React.JSX.Element {
   return (
     <>
       <Hero />
-      <Work />
       <Experience />
+      <Work />
       <About />
       <Contact />
     </>

@@ -33,6 +33,11 @@ interface FeaturedWorkItem {
 function Work(): React.JSX.Element {
   const federalYears: number = useYearsOfExperience(FEDERAL_START);
 
+  function handleExperienceLinkClick(e: React.MouseEvent<HTMLAnchorElement>): void {
+    e.preventDefault();
+    document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
   const featuredWork: FeaturedWorkItem = {
     category: 'Federal Systems',
     title: 'FEMA Preparedness Platforms',
@@ -41,15 +46,15 @@ function Work(): React.JSX.Element {
       title: 'Closer look',
       summary: 'One representative example from URT.',
       problem:
-        "Multiple federal users could be active in the same reporting workflow simultaneously. Stale sessions could not be trusted, and there was no mechanism to prevent concurrent users from overwriting each other's reporting data.",
+        "Federal users could be in the same reporting workflow at the same time. Without a safeguard, one user's changes could silently overwrite another user's reporting data, and expired sessions made it harder to tell who was actually active.",
       decision:
-        'Implemented real-time presence tracking using distributed session logic with polling and timeout behavior, rather than locking records or assuming a single active editor. This kept the workflow understandable for program staff while reducing overwrite risk.',
+        'I designed and implemented real-time presence tracking using session records with configurable timeout behavior. Users could see when another session was active without locking the workflow or forcing the system to assume only one person could edit at a time.',
       outcome:
-        'Reduced accidental overwrite risk for concurrent federal users in a national preparedness reporting system where data accuracy had compliance implications.',
+        "Concurrent users in FEMA preparedness assessments now get a warning before potentially overwriting each other's data, while the workflow stays flexible for program staff.",
     },
     tags: ['Java', 'Spring Boot', '.NET', 'Svelte', 'React', 'TypeScript', 'AWS', 'MySQL'],
     link: '#experience',
-    linkLabel: 'See full experience below',
+    linkLabel: 'See full experience',
   };
 
   const supportingWork: SupportingWorkItem[] = [
@@ -57,7 +62,7 @@ function Work(): React.JSX.Element {
       category: 'Local Client',
       title: 'Sprout and Learn',
       description:
-        'Multi-page site for a pediatric ABA, occupational, and speech-language therapy clinic in Radcliff, KY. Built to give a new clinic clear service pages, a simple contact path, and a maintainable Cloudflare deployment without adding unnecessary operational overhead.',
+        'Sprout and Learn is a new pediatric ABA, occupational, and speech-language therapy clinic in Radcliff, KY. I built the site around the questions families are likely to have first: what services are offered, who the clinic helps, and how to get in touch without digging around.',
       tags: ['React', 'TypeScript', 'Tailwind', 'Cloudflare Pages'],
       link: 'https://sproutky-demo.matthewbsmith.com',
       linkLabel: 'View demo',
@@ -67,7 +72,7 @@ function Work(): React.JSX.Element {
       category: 'Personal Project',
       title: 'RAG Document Q&A',
       description:
-        'Offline document Q&A prototype for evaluating private document search workflows. Used local embeddings, FAISS vector search, and a local Mistral model so source documents could stay out of hosted AI services while testing where retrieval helped and where human review still mattered.',
+        'I built this as a focused learning project while getting up to speed on local AI document workflows. It uses local embeddings, FAISS, and a local Mistral model to answer questions against private documents without sending the source material to a hosted AI service.',
       tags: ['Python', 'LangChain', 'FAISS', 'Mistral 7B'],
       link: 'https://github.com/msmith1392/rag-demo',
       linkLabel: 'View on GitHub',
@@ -76,13 +81,17 @@ function Work(): React.JSX.Element {
   ];
 
   return (
-    <section id="work" className="scroll-mt-20 bg-(--color-bg-primary) px-6 py-12">
+    <section
+      id="highlights"
+      className="scroll-mt-20 border-y border-border bg-bg-secondary px-6 py-16"
+    >
       <div className="mx-auto max-w-5xl">
-        <div className="mb-12 max-w-2xl">
-          <h2 className="mb-4 text-3xl text-text-primary">Highlighted Work</h2>
+        <div className="mb-12">
+          <h2 className="mb-4 text-3xl text-text-primary">A Closer Look</h2>
           <p className="text-sm leading-relaxed text-text-muted">
-            A closer look at my FEMA platform work and the production problems I had to reason
-            through there.
+            A closer look at a particular challenge from my 4 Arrows consulting work on FEMA
+            preparedness platforms, where I designed and implemented a solution that needed product
+            judgment, technical design, and long-term maintainability.
           </p>
         </div>
 
@@ -95,18 +104,19 @@ function Work(): React.JSX.Element {
             {featuredWork.link && featuredWork.linkLabel && (
               <a
                 href={featuredWork.link}
-                className="shrink-0 text-sm text-text-subtle transition-colors hover:text-accent sm:text-right"
+                onClick={handleExperienceLinkClick}
+                className="hidden shrink-0 text-sm text-text-subtle transition-colors hover:text-accent sm:block sm:text-right"
               >
                 {featuredWork.linkLabel}
               </a>
             )}
           </div>
-          <p className="mb-6 max-w-3xl text-base leading-relaxed text-text-muted">
+          <p className="mb-6 text-base leading-relaxed text-text-muted">
             {featuredWork.description}
           </p>
 
           <div className="mb-6">
-            <div className="mb-5 max-w-2xl">
+            <div className="mb-5">
               <p className="mb-2 text-xs uppercase tracking-widest text-text-subtle">
                 {featuredWork.caseStudy.title}
               </p>
@@ -146,56 +156,54 @@ function Work(): React.JSX.Element {
               </span>
             ))}
           </div>
+          {featuredWork.link && featuredWork.linkLabel && (
+            <a
+              href={featuredWork.link}
+              onClick={handleExperienceLinkClick}
+              className="mt-6 inline-block text-sm text-text-subtle transition-colors hover:text-accent sm:hidden"
+            >
+              {featuredWork.linkLabel}
+            </a>
+          )}
         </div>
 
-        <div className="pt-8">
-          <h3 className="mb-2 text-2xl text-text-primary">Additional Work</h3>
-          <p className="mb-6 max-w-2xl text-sm leading-relaxed text-text-muted">
-            I also take on smaller projects, including local client work and private-document AI
-            prototyping, when there is a clear problem to solve and a practical path to shipping it.
-          </p>
+        <div className="mt-4 border-t border-border-emphasis pt-12">
+          <h3 className="mb-6 text-2xl text-text-primary">Other Projects</h3>
           {supportingWork.map((item) => (
             <div
               key={item.title}
-              className="border-t border-border py-10 sm:flex sm:items-start sm:justify-between sm:gap-12"
+              className="relative border-t border-border py-10"
             >
-              {/* Left column */}
-              <div className="flex-1">
-                <p className="mb-2 text-xs uppercase tracking-widest text-text-subtle">
-                  {item.category}
-                </p>
-                <div className="mb-1 flex flex-wrap items-center gap-3">
-                  <h3 className="text-xl text-text-primary">{item.title}</h3>
-                  {item.status === 'in-development' && (
-                    <span className="text-xs text-text-subtle">In development</span>
-                  )}
-                </div>
-                <p className="mb-5 text-sm leading-relaxed text-text-muted">{item.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-sm px-2.5 py-0.5 text-xs text-text-muted ring-1 ring-border-emphasis"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+              <p className="mb-2 text-xs uppercase tracking-widest text-text-subtle">
+                {item.category}
+              </p>
+              <div className="mb-1 flex flex-wrap items-center gap-3">
+                <h3 className="text-xl text-text-primary">{item.title}</h3>
+                {item.status === 'in-development' && (
+                  <span className="text-xs text-text-subtle">In development</span>
+                )}
               </div>
-
-              {/* Right column — link */}
-              {item.link && item.linkLabel && (
-                <div className="mt-6 shrink-0 sm:mt-0 sm:text-right">
-                  <a
-                    href={item.link}
-                    {...(item.link.startsWith('http')
-                      ? { target: '_blank', rel: 'noopener noreferrer' }
-                      : {})}
-                    className="text-sm text-text-subtle transition-colors hover:text-accent"
+              <p className="mb-5 text-sm leading-relaxed text-text-muted">{item.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {item.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-sm px-2.5 py-0.5 text-xs text-text-muted ring-1 ring-border-emphasis"
                   >
-                    {item.linkLabel}
-                  </a>
-                </div>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              {item.link && item.linkLabel && (
+                <a
+                  href={item.link}
+                  {...(item.link.startsWith('http')
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
+                  className="mt-6 inline-block text-sm text-text-subtle transition-colors hover:text-accent sm:absolute sm:right-0 sm:top-10 sm:mt-0"
+                >
+                  {item.linkLabel}
+                </a>
               )}
             </div>
           ))}

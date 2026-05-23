@@ -1,25 +1,15 @@
-import { useEffect, useState } from 'react';
-
 const useYearsOfExperience = (startDate: string): number => {
-  const [years, setYears] = useState<number>(0);
+  const currentDate = new Date();
+  const start = new Date(startDate);
+  let years = currentDate.getFullYear() - start.getFullYear();
+  const differenceInMonths = currentDate.getMonth() - start.getMonth();
 
-  useEffect(() => {
-    const calculateYears = (): number => {
-      const currentDate = new Date();
-      const start = new Date(startDate);
-      let years = currentDate.getFullYear() - start.getFullYear();
-      const differenceInMonths = currentDate.getMonth() - start.getMonth();
-      if (
-        differenceInMonths < 0 ||
-        (differenceInMonths === 0 && currentDate.getDate() < start.getDate())
-      ) {
-        years -= 1;
-      }
-      return years;
-    };
-    setYears(calculateYears());
-  }, [startDate]);
-
+  if (
+    differenceInMonths < 0 ||
+    (differenceInMonths === 0 && currentDate.getDate() < start.getDate())
+  ) {
+    years -= 1;
+  }
   return years;
 };
 
