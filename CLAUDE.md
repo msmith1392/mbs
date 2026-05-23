@@ -81,7 +81,7 @@ wordmark reads MATTHEW B. SMITH; the site is a personal portfolio.
 - Scroll-based nav: clicking a link smoothly scrolls to the section via scrollIntoView
 - Mobile menu with focus trap and keyboard navigation
 - Sticky, dark background
-- Nav order: Work, Experience, About, Contact
+- Nav order: Work, Experience, About Me, Get In Touch
 - Nav links only render on `/` (homepage)
 
 ## Assets
@@ -108,7 +108,8 @@ capture at 512x512, save to public/favicon.png.
 ## Components
 
 - Hero.tsx — two-column hero on desktop (flex-row), single column on mobile (flex-col-reverse); eyebrow, heading, body, resume + mailto links, headshot
-- Work.tsx — work/portfolio section with three items; uses useYearsOfExperience for the FEMA item description
+- Work.tsx — featured FEMA item with Problem/Decision/Outcome case study block, plus supporting work array; uses useYearsOfExperience for federal tenure
+- LabeledEntry.tsx — shared component used by Services.tsx for both What I work on and What to expect sections; label/title/description pattern
 - Experience.tsx — career timeline, four roles rendered from a data array
 - About.tsx — brief bio; link to /services ("See how I can help.")
 - Contact.tsx — simple contact section with mailto email link
@@ -116,7 +117,7 @@ capture at 512x512, save to public/favicon.png.
 - Footer.tsx — centered name, tagline, icon links (LinkedIn, GitHub, Email, Resume), copyright
 - SkipToMain.tsx — visually hidden skip link for keyboard/screen reader users
 - ScrollToTop.tsx — scrolls to top on route change
-- pages/Services.tsx — local client work; Work-style rows, no numbered index columns
+- pages/Services.tsx — local client work; uses LabeledEntry for both What I work on and What to expect sections
 
 ## TypeScript Standards
 
