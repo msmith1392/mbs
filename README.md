@@ -38,8 +38,8 @@ wrangler deploy
 
 ## Routes
 
-- `/` — Homepage (Hero, Work, Experience, About, Contact)
-- `/services` — Local client work (linked from About)
+- `/` — Homepage (Hero, Experience, HighlightedWork, Contact)
+- `/services` — Client work (not linked from homepage)
 - `*` — 404
 
 ## Contact

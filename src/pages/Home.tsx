@@ -1,8 +1,7 @@
 import React from 'react';
 import Hero from '../components/Hero';
-import Work from '../components/Work';
+import HighlightedWork from '../components/HighlightedWork';
 import Experience from '../components/Experience';
-import About from '../components/About';
 import Contact from '../components/Contact';
 
 function HomePage(): React.JSX.Element {
@@ -10,8 +9,7 @@ function HomePage(): React.JSX.Element {
     <>
       <Hero />
       <Experience />
-      <Work />
-      <About />
+      <HighlightedWork />
       <Contact />
     </>
   );

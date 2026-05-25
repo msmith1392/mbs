@@ -72,15 +72,17 @@ function ServicesPage(): React.JSX.Element {
               to="/"
               className="text-sm text-text-subtle transition-colors hover:text-text-primary"
             >
-              &larr; Back
+              &larr; matthewbsmith.com
             </Link>
           </div>
           <h1 className="mb-6 text-5xl font-normal leading-[1.05]">
-            Working with organizations in Kentucky.
+            I work with clients who need something built for them.
           </h1>
           <p className="text-base leading-relaxed text-text-muted">
-            I build software for teams that do not have an engineer on staff: local government,
-            nonprofits, and small businesses. The first conversation is free.
+            I work with businesses, nonprofits, and local government offices that need something
+            built specifically for them. Teams without engineers on staff, organizations that have
+            outgrown their current tools, and anyone who wants a fixed scope before work starts. The
+            first conversation is free.
           </p>
         </div>
       </section>
@@ -132,6 +134,15 @@ function ServicesPage(): React.JSX.Element {
           <p className="mt-3 text-sm text-text-subtle">
             Tell me about your organization, what you need, and your timeline. That is enough to get
             started.
+          </p>
+          <p className="mt-6 text-sm text-text-subtle">
+            Want to see my background first?{' '}
+            <Link
+              to="/"
+              className="text-accent underline underline-offset-2 transition-colors hover:text-accent-hover"
+            >
+              matthewbsmith.com
+            </Link>
           </p>
         </div>
       </section>

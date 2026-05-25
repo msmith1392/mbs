@@ -18,8 +18,8 @@ const roles: Role[] = [
     startDate: 'March 2019',
     endDate: 'Present',
     bullets: [
-      'Designed and built the Svelte frontend for a TypeScript monorepo of AWS serverless applications serving as a unified access portal for FEMA platforms including PrepToolkit, RTLT, RIS, and OneResponder.',
       'Built real-time presence tracking for the Unified Reporting Tool (URT), using session records, polling, and configurable timeout behavior to reduce accidental overwrite risk across concurrent federal users.',
+      'Designed and built the Svelte frontend for a TypeScript monorepo of AWS serverless applications serving as a unified access portal for FEMA platforms including PrepToolkit, RTLT, RIS, and OneResponder.',
       'Automated enterprise reporting with Docmosis and Apache POI, cutting processing time ' +
         'from hours to minutes for national emergency preparedness programs.',
       'Delivered full-stack features across Spring Boot and .NET backends, MySQL, and Svelte frontends within the FEMA preparedness platform suite.',
