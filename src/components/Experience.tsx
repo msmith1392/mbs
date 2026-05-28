@@ -22,8 +22,7 @@ const roles: Role[] = [
       'Designed and built the Svelte frontend for a TypeScript monorepo of AWS serverless applications serving as a unified access portal for FEMA platforms including PrepToolkit, RTLT, RIS, and OneResponder.',
       'Automated enterprise reporting with Docmosis and Apache POI, cutting processing time ' +
         'from hours to minutes for national emergency preparedness programs.',
-      'Delivered full-stack features across Spring Boot and .NET backends, MySQL, and Svelte frontends within the FEMA preparedness platform suite.',
-      'Translated FEMA program requirements (THIRA/SPR, CPG, NIMS, UAWG) into technical solutions, coordinating with project leads to meet federal compliance and security standards.',
+      'Delivered full-stack features that translated FEMA program requirements (THIRA/SPR, CPG, NIMS, UAWG) into technical solutions in coordination with project leads to meet federal compliance and security standards.',
     ],
     techStack: [
       'Java',
