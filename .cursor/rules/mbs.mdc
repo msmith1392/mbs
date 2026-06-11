@@ -1,0 +1,96 @@
+---
+description: matthewbsmith.com — stack, design system, voice, and coding patterns
+alwaysApply: true
+---
+
+# MBS — matthewbsmith.com
+
+Personal portfolio site. Primary audience: W2/C2C recruiters. Secondary: local Kentucky client work on `/services`.
+
+Canonical reference: `AGENTS.md`. Human onboarding: `README.md`. Keep `AGENTS.md` in sync when architecture or deployment changes.
+
+## Hard rules
+
+- **Voice**: First-person singular only (`I`, `my`, `me`). Every `we`/`our`/`us` is a bug.
+- **Brand**: Personal portfolio, not "Matthew B. Smith Consulting" or an LLC. Wordmark: MATTHEW B. SMITH.
+- **Copy**: No em dashes. No AI-sounding prose.
+- **Styling**: Tailwind utility classes only. No inline `style={}`.
+- **TypeScript**: `strict: true`. Explicit return types on functions. Components return `React.JSX.Element`.
+- **Imports**: Use `import type` for type-only imports (`verbatimModuleSyntax`, `erasableSyntaxOnly`).
+- **Scope**: Minimal diffs. Match existing patterns. Do not refactor unrelated code.
+
+## Stack
+
+React 19, TypeScript 6, Vite 8, Tailwind CSS v4 (`@tailwindcss/vite`), React Router v7 (`BrowserRouter`), Lucide React. Cloudflare Workers static assets only — no Worker API, no contact form.
+
+`framer-motion` is in `package.json` but unused. Do not add animation libraries unless asked.
+
+## Routes and nav
+
+| Route | Content |
+|-------|---------|
+| `/` | Hero, Experience, HighlightedWork, Contact |
+| `/services` | Client work — **not** in header nav, **not** linked from homepage |
+| `*` | NotFound |
+
+Header nav (`src/data/siteNav.ts`) renders only on `/`. Links scroll to section IDs via `scrollIntoView`: `experience`, `highlights`, `contact`. Sections use `scroll-mt-20` where sticky header overlap matters.
+
+## Design system
+
+Tokens live in `src/index.css` `@theme`. Use Tailwind semantic classes from those tokens:
+
+- Backgrounds: `bg-(--color-bg-primary)`, `bg-bg-secondary`, `bg-bg-tertiary`
+- Text: `text-text-primary`, `text-text-muted`, `text-text-subtle`
+- Accent: `text-accent`, `bg-accent`, `hover:text-accent`
+- Borders: `border-border`, `border-border-emphasis`
+
+All homepage sections use `bg-(--color-bg-primary)`. No alternating section backgrounds. Dividers: `border-t border-border`.
+
+Typography: Instrument Serif (h1–h3, weight 400), Inter (body). Headings use `font-normal`, not bold.
+
+Layout convention: `section` → `mx-auto max-w-5xl` wrapper, `px-6 py-12` or `py-16`.
+
+## Component patterns
+
+- **Pages** (`src/pages/`): compose section components; keep page files thin.
+- **Sections** (`src/components/`): one component per homepage block.
+- **Data**: shared config in `src/data/` (`constants.ts`, `siteNav.ts`). Page-specific lists as typed arrays colocated in the page or section file (see `Services.tsx`, `HighlightedWork.tsx`).
+- **LabeledEntry**: shared label/title/description block for `/services`. Reuse its visual language (`text-xs uppercase tracking-widest text-text-subtle`, `border-t border-border py-10`) for similar content.
+- **Assets**: SVGs imported from `src/assets/`. PNGs/PDFs served from `public/`.
+
+## Code style
+
+Prettier: single quotes, semicolons, 2-space indent, 100 char width. Run `npm run lint` after substantive changes.
+
+```tsx
+// Component shape
+function Example(): React.JSX.Element {
+  return (
+    <section className="bg-(--color-bg-primary) px-6 py-12">
+      <div className="mx-auto max-w-5xl">...</div>
+    </section>
+  );
+}
+```
+
+## Accessibility
+
+Target Lighthouse accessibility 100. `SkipToMain`, focus trap in mobile nav (return focus to hamburger on close), `aria-label` or visible text on interactive elements, `id="main-content"` on `<main>`.
+
+## Deployment
+
+`wrangler.json`: static `./dist`, `not_found_handling: single-page-application`. No `_redirects`. Push to `main` auto-deploys.
+
+```bash
+npm run dev          # UI development
+npm run build        # production build (tsc -b && vite build)
+npm run build && wrangler dev   # local production preview
+```
+
+## Do not
+
+- Commit unless explicitly asked
+
+## Versioning
+
+Conventional commits (`feat`/`fix`/`chore`/`docs`, subject under 50 chars). Semver tags on `main` after releases.
