@@ -83,51 +83,55 @@ const roles: Role[] = [
 
 function Experience(): React.JSX.Element {
   return (
-    <section id="experience" className="scroll-mt-20 bg-(--color-bg-primary) px-6 py-12">
+    <section id="experience" className="scroll-mt-20 bg-(--color-bg-primary) px-6 py-16">
       <div className="mx-auto max-w-5xl">
-        <h2 className="mb-12 text-3xl text-text-primary">Engineering Experience</h2>
-        <div>
+        <h2 className="text-3xl tracking-tight text-text-primary sm:text-4xl">
+          Engineering Experience
+        </h2>
+
+        <div className="mt-10 border-t border-border">
           {roles.map((role) => (
-            <div key={`${role.company}-${role.startDate}`} className="border-t border-border py-10">
-              {/* Top line: title + date range */}
-              <div className="mb-1 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
+            <article
+              key={`${role.company}-${role.startDate}`}
+              className="border-b border-border py-9"
+            >
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
                 <h3 className="text-xl text-text-primary">{role.jobTitle}</h3>
-                <span className="shrink-0 text-sm text-text-subtle">
-                  {role.startDate} &ndash; {role.endDate}
-                </span>
+                <p className="shrink-0 text-sm text-text-subtle">
+                  {role.startDate} to {role.endDate}
+                </p>
               </div>
-              {/* Second line: company + location */}
-              <div className="mb-5 flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
-                <span className="text-sm text-accent">{role.company}</span>
-                <span className="text-sm text-text-subtle">{role.location}</span>
+              <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-sm">
+                <span className="font-medium text-accent">{role.company}</span>
+                <span className="text-text-subtle">{role.location}</span>
               </div>
-              {/* Bullets */}
-              <ul className="mb-5 space-y-2">
+
+              <ul className="mt-6 max-w-3xl space-y-3">
                 {role.bullets.map((bullet) => (
                   <li
                     key={bullet.slice(0, 40)}
                     className="flex gap-3 text-sm leading-relaxed text-text-muted"
                   >
                     <span
-                      className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
                       aria-hidden="true"
                     />
                     {bullet}
                   </li>
                 ))}
               </ul>
-              {/* Tech stack tags */}
-              <div className="flex flex-wrap gap-2">
+
+              <div className="mt-6 flex flex-wrap gap-2">
                 {role.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="rounded-sm px-2.5 py-0.5 text-xs text-text-muted ring-1 ring-border-emphasis"
+                    className="rounded-md border border-border bg-bg-secondary px-2.5 py-1 text-xs text-text-muted"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

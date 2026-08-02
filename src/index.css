@@ -1,43 +1,43 @@
-@import '@fontsource/instrument-serif/400.css';
-@import '@fontsource/instrument-serif/400-italic.css';
 @import '@fontsource/inter/400.css';
 @import '@fontsource/inter/500.css';
 @import 'tailwindcss';
 
 @theme {
-  --color-bg-primary: #0f1117;
-  --color-bg-secondary: #161b24;
-  --color-bg-tertiary: #1c2333;
-  --color-accent: #4a87d1;
-  --color-accent-hover: #5590d4;
-  --color-text-on-accent: #0f1117;
-  --color-text-primary: #e8eaf0;
-  --color-text-muted: #9ca3af;
-  --color-text-subtle: #7c8492;
-  --color-border: rgba(232, 234, 240, 0.07);
-  --color-border-emphasis: rgba(232, 234, 240, 0.13);
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --color-bg-primary: #0b0d10;
+  --color-bg-secondary: #11141a;
+  --color-bg-tertiary: #181c23;
+  --color-accent: #60a5fa;
+  --color-accent-hover: #93c5fd;
+  --color-text-on-accent: #0b0d10;
+  --color-text-primary: #f4f4f5;
+  --color-text-muted: #a1a1aa;
+  --color-text-subtle: #858993;
+  --color-border: #272a31;
+  --color-border-emphasis: #3f434c;
 }
 
 @layer base {
+  html {
+    scroll-behavior: auto;
+  }
+
   body {
-    background-color: #0f1117;
-    font-family: 'Inter', sans-serif;
+    background-color: #0b0d10;
     color: var(--color-text-primary);
+    font-family: 'Inter', sans-serif;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-text-on-accent);
   }
 
   h1,
   h2,
   h3 {
+    font-weight: 500;
     text-wrap: balance;
-    font-family: 'Instrument Serif', serif;
-    font-weight: 400;
-  }
-
-  h1 {
-    line-height: 1.12;
-  }
-
-  h2 {
-    line-height: 1.2;
   }
 }

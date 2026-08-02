@@ -65,32 +65,32 @@ const processSteps: ProcessStep[] = [
 function ServicesPage(): React.JSX.Element {
   return (
     <>
-      <section className="bg-(--color-bg-primary) px-6 py-12">
+      <section className="bg-(--color-bg-primary) px-6 py-14 sm:py-16">
         <div className="mx-auto max-w-5xl">
-          <div className="mb-8">
-            <Link
-              to="/"
-              className="text-sm text-text-subtle transition-colors hover:text-text-primary"
-            >
-              &larr; matthewbsmith.com
-            </Link>
+          <Link
+            to="/"
+            className="text-sm font-medium text-text-subtle transition-colors hover:text-accent"
+          >
+            ← matthewbsmith.com
+          </Link>
+          <div className="mt-10 max-w-3xl">
+            <h1 className="text-4xl leading-tight tracking-tight text-text-primary sm:text-5xl">
+              I work with clients who need something built for them.
+            </h1>
+            <p className="mt-6 text-base leading-relaxed text-text-muted">
+              I work with businesses, nonprofits, and local government offices that need something
+              built specifically for them. Teams without engineers on staff, organizations that have
+              outgrown their current tools, and anyone who wants a fixed scope before work starts.
+              The first conversation is free.
+            </p>
           </div>
-          <h1 className="mb-6 text-5xl font-normal leading-[1.05]">
-            I work with clients who need something built for them.
-          </h1>
-          <p className="text-base leading-relaxed text-text-muted">
-            I work with businesses, nonprofits, and local government offices that need something
-            built specifically for them. Teams without engineers on staff, organizations that have
-            outgrown their current tools, and anyone who wants a fixed scope before work starts. The
-            first conversation is free.
-          </p>
         </div>
       </section>
 
-      <section className="bg-(--color-bg-primary) px-6 py-12">
+      <section className="border-y border-border bg-bg-secondary px-6 py-14">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-12 text-3xl text-text-primary">What I work on</h2>
-          <div>
+          <h2 className="text-3xl tracking-tight text-text-primary">What I work on</h2>
+          <div className="mt-8 border-b border-border">
             {serviceItems.map((item) => (
               <LabeledEntry
                 key={item.title}
@@ -103,10 +103,10 @@ function ServicesPage(): React.JSX.Element {
         </div>
       </section>
 
-      <section className="bg-(--color-bg-primary) px-6 py-12">
+      <section className="bg-(--color-bg-primary) px-6 py-14">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-12 text-3xl text-text-primary">What to expect</h2>
-          <div>
+          <h2 className="text-3xl tracking-tight text-text-primary">What to expect</h2>
+          <div className="mt-8 border-b border-border">
             {processSteps.map((step) => (
               <LabeledEntry
                 key={step.title}
@@ -119,31 +119,33 @@ function ServicesPage(): React.JSX.Element {
         </div>
       </section>
 
-      <section className="bg-(--color-bg-primary) px-6 pb-16 pt-4">
-        <div className="mx-auto max-w-5xl border-t border-border pt-10">
-          <h2 className="mb-4 text-3xl font-normal text-text-primary">Ready to talk?</h2>
-          <p className="text-text-muted">
-            The first conversation is free.{' '}
-            <a
-              href="mailto:matt@matthewbsmith.com"
-              className="text-accent underline underline-offset-2 transition-colors hover:text-accent-hover"
-            >
-              matt@matthewbsmith.com
-            </a>
-          </p>
-          <p className="mt-3 text-sm text-text-subtle">
-            Tell me about your organization, what you need, and your timeline. That is enough to get
-            started.
-          </p>
-          <p className="mt-6 text-sm text-text-subtle">
-            Want to see my background first?{' '}
-            <Link
-              to="/"
-              className="text-accent underline underline-offset-2 transition-colors hover:text-accent-hover"
-            >
-              matthewbsmith.com
-            </Link>
-          </p>
+      <section className="border-t border-border bg-bg-secondary px-6 py-14">
+        <div className="mx-auto max-w-5xl">
+          <div className="max-w-2xl rounded-lg border border-border bg-(--color-bg-primary) p-6 sm:p-8">
+            <h2 className="text-2xl text-text-primary">Ready to talk?</h2>
+            <p className="mt-3 text-sm leading-relaxed text-text-muted">
+              The first conversation is free. Send me a short description of your organization, what
+              you need, and your timeline through LinkedIn.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-5">
+              <a
+                href="https://www.linkedin.com/in/matthew-smith-22310b111/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-(--color-text-on-accent) transition-colors hover:bg-accent-hover"
+              >
+                Message me on LinkedIn
+              </a>
+              <a
+                href="/MatthewSmithResume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2.5 text-sm font-medium text-text-muted transition-colors hover:text-accent"
+              >
+                Review my resume
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </>

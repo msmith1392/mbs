@@ -16,51 +16,51 @@ Human onboarding: `README.md`. Cursor-specific rules: `.cursor/rules/mbs.mdc`.
 
 ## Stack
 
-React 19, TypeScript 6, Vite 8, Tailwind CSS v4 (`@tailwindcss/vite`), React Router v7 (`BrowserRouter`), Lucide React. Cloudflare Workers static assets only — no Worker API, no contact form.
+React 19, TypeScript 6, Vite 8, Tailwind CSS v4 (`@tailwindcss/vite`), React Router v7 (`BrowserRouter`), Lucide React. Cloudflare Workers static assets only. No Worker API and no contact form.
 
 `framer-motion` is in `package.json` but unused. Do not add animation libraries unless asked.
 
 ## Routes and nav
 
-| Route | Content |
-|-------|---------|
-| `/` | Hero, Experience, HighlightedWork, Contact |
-| `/services` | Client work — **not** in header nav, **not** linked from homepage |
-| `*` | NotFound |
+| Route       | Content                                                             |
+| ----------- | ------------------------------------------------------------------- |
+| `/`         | Hero, HighlightedWork, Experience, Contact                          |
+| `/services` | Client work, **not** in header nav and **not** linked from homepage |
+| `*`         | NotFound                                                            |
 
-Header nav (`src/data/siteNav.ts`) renders only on `/`. Nav order: Experience, Highlights, Get In Touch. Links scroll to section IDs via `scrollIntoView`: `experience`, `highlights`, `contact`. Sections use `scroll-mt-20` where sticky header overlap matters.
+Header nav (`src/data/siteNav.ts`) renders only on `/`. Nav order: Highlights, Experience, Contact. Links scroll to section IDs via `scrollIntoView`: `highlights`, `experience`, `contact`. Sections use `scroll-mt-20` where sticky header overlap matters.
 
 ## Design system
 
-Tokens live in `src/index.css` `@theme`. Use Tailwind semantic classes from those tokens:
+The site uses a quiet dark technical personal-site aesthetic. Tokens live in `src/index.css` `@theme`. Use Tailwind semantic classes from those tokens:
 
 - Backgrounds: `bg-(--color-bg-primary)`, `bg-bg-secondary`, `bg-bg-tertiary`
 - Text: `text-text-primary`, `text-text-muted`, `text-text-subtle`
 - Accent: `text-accent`, `bg-accent`, `hover:text-accent`
 - Borders: `border-border`, `border-border-emphasis`
 
-All homepage sections use `bg-(--color-bg-primary)`. No alternating section backgrounds. Dividers: `border-t border-border`.
+Use `bg-(--color-bg-primary)` for the near-black primary surface and `bg-bg-secondary` for subtle section and card contrast. Dividers use `border-border` or `border-border-emphasis`.
 
-`body { background-color: #0f1117 }` in `index.css` prevents white overscroll on iOS.
+`body { background-color: #0b0d10 }` in `index.css` prevents mismatched overscroll on iOS.
 
-Typography: Instrument Serif (h1–h3, weight 400), Inter (body, 400 or 500). Headings use `font-normal`, not bold. Both fonts via `@fontsource` in `index.css`.
+Typography: Inter for headings and body copy, weights 400 or 500. Inter is loaded through `@fontsource` in `index.css`.
 
-Layout convention: `section` → `mx-auto max-w-5xl` wrapper, `px-6 py-12` or `py-16`.
+Layout convention: `section` with an `mx-auto max-w-5xl` wrapper and `px-6 py-16`. Use familiar headings, restrained blue accents, subtle borders, and small border radii. Avoid decorative metadata, numbered sections, and oversized display type.
 
 Token reference:
 
 ```css
---color-bg-primary: #0f1117;
---color-bg-secondary: #161b24;
---color-bg-tertiary: #1c2333;
---color-accent: #4a87d1;
---color-accent-hover: #5590d4;
---color-text-on-accent: #0f1117;
---color-text-primary: #e8eaf0;
---color-text-muted: #9ca3af;
---color-text-subtle: #7c8492;
---color-border: rgba(232, 234, 240, 0.07);
---color-border-emphasis: rgba(232, 234, 240, 0.13);
+--color-bg-primary: #0b0d10;
+--color-bg-secondary: #11141a;
+--color-bg-tertiary: #181c23;
+--color-accent: #60a5fa;
+--color-accent-hover: #93c5fd;
+--color-text-on-accent: #0b0d10;
+--color-text-primary: #f4f4f5;
+--color-text-muted: #a1a1aa;
+--color-text-subtle: #858993;
+--color-border: #272a31;
+--color-border-emphasis: #3f434c;
 ```
 
 ## Component patterns
@@ -68,7 +68,7 @@ Token reference:
 - **Pages** (`src/pages/`): compose section components; keep page files thin.
 - **Sections** (`src/components/`): one component per homepage block.
 - **Data**: shared config in `src/data/` (`constants.ts`, `siteNav.ts`). Page-specific lists as typed arrays colocated in the page or section file (see `Services.tsx`, `HighlightedWork.tsx`).
-- **LabeledEntry**: shared label/title/description block for `/services`. Reuse its visual language (`text-xs uppercase tracking-widest text-text-subtle`, `border-t border-border py-10`) for similar content.
+- **LabeledEntry**: shared label/title/description block for `/services`. Reuse its visual language (`text-sm font-medium text-accent`, `border-t border-border py-8`) for similar content.
 - **Assets**: SVGs imported from `src/assets/`. PNGs/PDFs served from `public/`.
 
 ## Project structure
@@ -89,30 +89,30 @@ public/          # favicon.png, og-image.png, robots.txt, sitemap.xml, MatthewSm
 
 ## Components
 
-- **Hero.tsx** — two-column hero on desktop (`flex-row`), single column on mobile (`flex-col-reverse`); eyebrow, heading, body, resume + mailto links, headshot
-- **Experience.tsx** — career timeline, four roles from a data array
-- **HighlightedWork.tsx** — chosen work items, each with Problem/Decision/Outcome case study block
-- **Contact.tsx** — mailto contact section
-- **Header.tsx** — sticky nav, SVG wordmark (`mbsc-wordmark.svg` at h-8), scroll-based nav, mobile menu with focus trap
-- **Footer.tsx** — wordmark, tagline, icon links (LinkedIn, GitHub, Email, Resume), copyright
-- **LabeledEntry.tsx** — shared label/title/description pattern for `/services`
+- **Hero.tsx** - compact two-column introduction with resume and contact actions and natural-color headshot
+- **Experience.tsx** - professional timeline with four roles from a data array
+- **HighlightedWork.tsx** - readable case-study cards with Problem/Decision/Outcome sections
+- **Contact.tsx** - light LinkedIn, resume, and GitHub contact directory
+- **Header.tsx** - compact sticky nav, SVG wordmark, reduced-motion-aware scrolling, mobile menu with focus trap
+- **Footer.tsx** - identity, location, copyright, and plain text links
+- **LabeledEntry.tsx** - shared label/title/description pattern for `/services`
 - **SkipToMain.tsx** — skip link for keyboard/screen reader users
 - **ScrollToTop.tsx** — scrolls to top on route change
 - **pages/Services.tsx** — local client work; uses `LabeledEntry` for What I work on and What to expect
 
 ## Assets
 
-| File | Purpose |
-|------|---------|
-| `src/assets/mbsc-wordmark.svg` | Header wordmark (900x70), "MATTHEW B. SMITH" only |
-| `src/assets/mbsc-wordmark-sm.svg` | Footer wordmark (680x50) |
-| `src/assets/favicon-512x512.svg` | Source SVG for `public/favicon.png` |
-| `src/assets/og-image1200x630.svg` | Source SVG for `public/og-image.png` |
-| `src/assets/demo-cards/` | Portfolio screenshot PNGs |
-| `public/favicon.png` | 512x512 favicon |
-| `public/og-image.png` | 1200x630 social preview |
-| `public/MatthewSmithResume.pdf` | Downloadable CV (PDF) |
-| `public/MatthewSmithResume.docx` | Downloadable CV (Word) |
+| File                              | Purpose                                           |
+| --------------------------------- | ------------------------------------------------- |
+| `src/assets/mbsc-wordmark.svg`    | Header wordmark (900x70), "MATTHEW B. SMITH" only |
+| `src/assets/mbsc-wordmark-sm.svg` | Footer wordmark (680x50)                          |
+| `src/assets/favicon-512x512.svg`  | Source SVG for `public/favicon.png`               |
+| `src/assets/og-image1200x630.svg` | Source SVG for `public/og-image.png`              |
+| `src/assets/demo-cards/`          | Portfolio screenshot PNGs                         |
+| `public/favicon.png`              | 512x512 favicon                                   |
+| `public/og-image.png`             | 1200x630 social preview                           |
+| `public/MatthewSmithResume.pdf`   | Downloadable CV (PDF)                             |
+| `public/MatthewSmithResume.docx`  | Downloadable CV (Word)                            |
 
 Regenerate `public/og-image.png`: open `src/assets/og-image1200x630.svg` in Chrome, DevTools viewport 1200x630, screenshot, save to `public/og-image.png`.
 
@@ -126,7 +126,7 @@ Prettier: single quotes, semicolons, 2-space indent, 100 char width. ESLint for 
 // Component shape
 function Example(): React.JSX.Element {
   return (
-    <section className="bg-(--color-bg-primary) px-6 py-12">
+    <section className="bg-(--color-bg-primary) px-6 py-16">
       <div className="mx-auto max-w-5xl">...</div>
     </section>
   );
@@ -139,7 +139,7 @@ Target Lighthouse accessibility 100. `SkipToMain`, focus trap in mobile nav (ret
 
 ## Contact
 
-Homepage Contact uses a mailto link to matt@matthewbsmith.com. No contact form is deployed. A prior Resend/Worker contact API may be reintroduced later; do not document it as live.
+Homepage Contact points recruiters to the downloadable resume and professional profiles. Do not publish the raw mailbox address in UI, metadata, docs, or generated assets.
 
 ## Deployment
 
@@ -154,7 +154,7 @@ npm run build && wrangler dev   # local production preview
 ## DNS
 
 - matthewbsmith.com registered via Cloudflare Registrar
-- Email routing: matt@matthewbsmith.com forwards to matthew.smith.tech.consulting@gmail.com
+- Email routing is configured in Cloudflare
 - Cloudflare Email Routing MX and TXT records in place
 
 ## Versioning

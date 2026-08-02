@@ -1,7 +1,7 @@
 {
   "name": "mbs",
   "private": true,
-  "version": "1.3.2",
+  "version": "1.4.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fontsource/instrument-serif": "^5.2.8",
     "@fontsource/inter": "^5.2.8",
     "@tailwindcss/vite": "^4.2.2",
     "framer-motion": "^12.38.0",

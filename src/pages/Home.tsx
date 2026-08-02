@@ -8,8 +8,8 @@ function HomePage(): React.JSX.Element {
   return (
     <>
       <Hero />
-      <Experience />
       <HighlightedWork />
+      <Experience />
       <Contact />
     </>
   );

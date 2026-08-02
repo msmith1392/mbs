@@ -1,6 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#0f1117"/>
-  <text x="600" y="255" text-anchor="middle" dominant-baseline="middle" font-family="system-ui, -apple-system, sans-serif" font-size="82" font-weight="700" letter-spacing="-2" fill="#e8eaf0">MATTHEW B. SMITH</text>
-  <text x="600" y="345" text-anchor="middle" dominant-baseline="middle" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="400" letter-spacing="2" fill="#4a87d1">Senior Software Engineer</text>
-  <text x="600" y="430" text-anchor="middle" dominant-baseline="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="400" letter-spacing="1" fill="#7c8492">matthewbsmith.com</text>
+  <rect width="1200" height="630" fill="#0b0d10"/>
+  <rect x="80" y="92" width="56" height="8" rx="4" fill="#60a5fa"/>
+  <text x="80" y="258" font-family="system-ui, -apple-system, sans-serif" font-size="74" font-weight="700" letter-spacing="-2" fill="#f4f4f5">Matthew B. Smith</text>
+  <text x="82" y="334" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="400" fill="#a1a1aa">Senior Software Engineer</text>
+  <line x1="80" y1="430" x2="1120" y2="430" stroke="#272a31" stroke-width="2"/>
+  <text x="82" y="490" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="500" fill="#858993">Somerset, Kentucky</text>
+  <text x="1118" y="490" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="500" fill="#60a5fa">matthewbsmith.com</text>
 </svg>

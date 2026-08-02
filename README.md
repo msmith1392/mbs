@@ -2,8 +2,7 @@
 
 Personal site for [matthewbsmith.com](https://matthewbsmith.com). Portfolio and resume
 for senior software engineering roles, with a secondary page for local client work.
-Built with React, TypeScript, Vite, and Tailwind CSS. Deployed on Cloudflare Workers
-(static assets only).
+Built with React, TypeScript, Vite, and Tailwind CSS. Deployed on Cloudflare Workers.
 
 ## Development
 
@@ -38,18 +37,19 @@ wrangler deploy
 
 ## Routes
 
-- `/` — Homepage (Hero, Experience, HighlightedWork, Contact)
-- `/services` — Client work (not linked from homepage)
-- `*` — 404
+- `/` - Homepage (Hero, HighlightedWork, Experience, Contact)
+- `/services` - Client work (not linked from homepage)
+- `*` - 404
 
 ## Contact
 
-Homepage contact is a `mailto:` link to matt@matthewbsmith.com. There is no contact
-form on the site at this time.
+Homepage contact points recruiters to the downloadable resume and professional
+profiles. The raw mailbox address is not published in UI, metadata, docs, or
+generated assets.
 
 ## Branch Strategy
 
-- `main` — production, auto-deploys to matthewbsmith.com
+- `main` - production, auto-deploys to matthewbsmith.com
 - Feature branches merged to main via PR
 
 ## Assets

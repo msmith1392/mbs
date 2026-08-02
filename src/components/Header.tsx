@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import msbcWordmark from '../assets/mbsc-wordmark.svg'; // SVG wordmark
+import msbcWordmark from '../assets/mbsc-wordmark.svg';
 import { siteNavLinks } from '../data/siteNav';
 import type { SiteNavLink } from '../data/siteNav';
 
@@ -56,7 +56,10 @@ function Header(): React.JSX.Element {
       return;
     }
     e.preventDefault();
-    document.getElementById(item.sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document
+      .getElementById(item.sectionId)
+      ?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
   }
 
   function renderDesktopLink(item: SiteNavLink): React.JSX.Element {
@@ -64,7 +67,7 @@ function Header(): React.JSX.Element {
       <a
         key={item.href}
         href={item.href}
-        className="rounded px-3 py-1.5 text-base font-medium text-text-muted transition-colors hover:bg-white/10 hover:text-text-primary"
+        className="rounded-md px-3 py-2 text-sm font-medium text-text-muted transition-colors hover:bg-bg-secondary hover:text-text-primary"
         onClick={(e) => handleNavClick(e, item)}
       >
         {item.label}
@@ -77,7 +80,7 @@ function Header(): React.JSX.Element {
       <a
         key={item.href}
         href={item.href}
-        className="rounded px-3 py-1.5 text-base font-medium text-text-muted transition-colors hover:bg-white/10 hover:text-text-primary"
+        className="rounded-md px-3 py-3 text-base font-medium text-text-muted transition-colors hover:bg-bg-secondary hover:text-text-primary"
         onClick={(e) => {
           handleNavClick(e, item);
           setMenuOpen(false);
@@ -89,27 +92,27 @@ function Header(): React.JSX.Element {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-(--color-bg-primary) shadow-sm">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <header className="sticky top-0 z-50 border-b border-border bg-(--color-bg-primary)/95 backdrop-blur-sm">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
         <Link
           to="/"
-          className="flex items-center gap-1"
+          className="flex items-center"
           onClick={() => {
             if (pathname === '/') {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }
           }}
         >
-          <img src={msbcWordmark} alt="Matthew B. Smith" className="h-8 w-auto" />
+          <img src={msbcWordmark} alt="Matthew B. Smith" className="h-7 w-auto" />
         </Link>
-        <nav className="hidden items-center gap-4 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
           {pathname === '/' && siteNavLinks.map(renderDesktopLink)}
         </nav>
         {pathname === '/' && (
           <button
             ref={menuButtonRef}
             type="button"
-            className="text-text-muted lg:hidden"
+            className="rounded-md p-2 text-text-muted transition-colors hover:bg-bg-secondary hover:text-text-primary md:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
@@ -123,7 +126,7 @@ function Header(): React.JSX.Element {
         <nav
           ref={mobileNavRef}
           id="mobile-nav"
-          className="flex flex-col gap-3 border-t border-border bg-(--color-bg-primary) px-6 pb-4 lg:hidden"
+          className="mx-auto flex max-w-5xl flex-col gap-1 border-t border-border bg-(--color-bg-primary) px-3 py-3 md:hidden"
           aria-label="Primary mobile"
         >
           {siteNavLinks.map(renderMobileLink)}
