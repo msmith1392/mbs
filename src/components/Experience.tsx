@@ -83,13 +83,16 @@ const roles: Role[] = [
 
 function Experience(): React.JSX.Element {
   return (
-    <section id="experience" className="scroll-mt-20 bg-(--color-bg-primary) px-6 py-16">
-      <div className="mx-auto max-w-5xl">
-        <h2 className="text-3xl tracking-tight text-text-primary sm:text-4xl">
+    <section
+      id="experience"
+      className="scroll-mt-20 bg-(--color-bg-primary) px-6 py-20 sm:py-24"
+    >
+      <div className="mx-auto max-w-4xl">
+        <h2 className="text-center text-3xl tracking-tight text-text-primary sm:text-4xl">
           Engineering Experience
         </h2>
 
-        <div className="mt-10 border-t border-border">
+        <div className="mt-12 border-t border-border-emphasis">
           {roles.map((role) => (
             <article
               key={`${role.company}-${role.startDate}`}
@@ -113,7 +116,7 @@ function Experience(): React.JSX.Element {
                     className="flex gap-3 text-sm leading-relaxed text-text-muted"
                   >
                     <span
-                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                      className="mt-2 h-1.5 w-1.5 shrink-0 bg-accent"
                       aria-hidden="true"
                     />
                     {bullet}
@@ -121,16 +124,10 @@ function Experience(): React.JSX.Element {
                 ))}
               </ul>
 
-              <div className="mt-6 flex flex-wrap gap-2">
-                {role.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-md border border-border bg-bg-secondary px-2.5 py-1 text-xs text-text-muted"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+              <p className="mt-6 text-xs leading-relaxed text-text-subtle">
+                <span className="font-medium text-text-muted">Technologies:</span>{' '}
+                {role.techStack.join(', ')}
+              </p>
             </article>
           ))}
         </div>

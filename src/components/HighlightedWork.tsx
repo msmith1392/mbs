@@ -15,18 +15,18 @@ interface WorkItem {
 const workItems: WorkItem[] = [
   {
     category: '4 Arrows Consulting · Federal Systems',
-    title: 'Concurrent Session Safety in FEMA Reporting',
+    title: 'Concurrent Editing Safety in FEMA Assessments',
     description:
-      'PrepToolkit and the Unified Reporting Tool (URT) are FEMA preparedness platforms used by emergency management partners to complete THIRA/SPR assessments and support National Preparedness System reporting.',
+      "PrepToolkit's Unified Reporting Tool supports FEMA partners completing high-stakes preparedness assessments across several national programs.",
     caseStudy: {
       problem:
-        "Federal users could be in the same reporting workflow at the same time. Without a safeguard, one user's changes could silently overwrite another user's data, and expired sessions made it harder to tell who was actually active.",
+        'Multiple users could work in the same jurisdiction and assessment without knowing another editor was active, creating a risk of overlapping changes. Inactivity and navigation between jurisdictions could also leave presence warnings out of sync.',
       decision:
-        'I designed and implemented real-time presence tracking using session records with configurable timeout behavior. Users could see when another session was active without locking the workflow or forcing the system to assume only one person could edit at a time.',
+        'I owned this feature end to end, implementing database-backed presence tracking across persistence, Spring services, REST APIs, and the client application. The design detects other active editors without locking the workflow, expires inactive sessions, and cleans up presence as users navigate between jurisdictions. I later hardened the client lifecycle so detached views and late network responses could not republish stale state.',
       outcome:
-        "Concurrent users in FEMA preparedness assessments now get a warning before potentially overwriting each other's data, while the workflow stays flexible for program staff.",
+        'Users now receive stable warnings when someone else is active in the same assessment, helping them avoid conflicting changes while preserving the flexible workflow program staff needed.',
     },
-    tags: ['Java', 'Spring Boot', '.NET', 'Svelte', 'React', 'TypeScript', 'AWS', 'MySQL'],
+    tags: ['Java', 'Spring Boot', 'REST APIs', 'JPA/Hibernate', 'MySQL'],
   },
   {
     category: '4 Arrows Consulting · Federal Systems',
@@ -49,10 +49,10 @@ function HighlightedWork(): React.JSX.Element {
   return (
     <section
       id="highlights"
-      className="scroll-mt-20 border-y border-border bg-bg-secondary px-6 py-16"
+      className="scroll-mt-20 border-y border-border bg-bg-secondary px-6 py-20 sm:py-24"
     >
       <div className="mx-auto max-w-5xl">
-        <div className="mb-10 max-w-2xl">
+        <div className="mx-auto mb-4 max-w-2xl text-center">
           <h2 className="text-3xl tracking-tight text-text-primary sm:text-4xl">
             Highlighted Work
           </h2>
@@ -62,49 +62,45 @@ function HighlightedWork(): React.JSX.Element {
           </p>
         </div>
 
-        <div className="space-y-8">
+        <div>
           {workItems.map((item) => (
             <article
               key={item.title}
-              className="rounded-lg border border-border bg-(--color-bg-primary) p-6 sm:p-8"
+              className="border-t border-border-emphasis py-12 first:mt-10 sm:py-14"
             >
-              <p className="text-sm font-medium text-accent">{item.category}</p>
-              <h3 className="mt-2 text-2xl tracking-tight text-text-primary">{item.title}</h3>
-              <p className="mt-4 max-w-3xl text-sm leading-relaxed text-text-muted sm:text-base">
+              <p className="text-center text-sm font-medium text-accent">{item.category}</p>
+              <h3 className="mt-2 text-center text-2xl tracking-tight text-text-primary sm:text-3xl">
+                {item.title}
+              </h3>
+              <p className="mx-auto mt-4 max-w-4xl text-center text-base leading-relaxed text-text-muted">
                 {item.description}
               </p>
 
-              <dl className="mt-7 grid gap-6 border-t border-border pt-7 md:grid-cols-3">
-                <div>
+              <div className="mt-10 grid gap-8 lg:grid-cols-3 lg:gap-10">
+                <dl className="border-t-2 border-border-emphasis pt-5">
                   <dt className="text-sm font-medium text-text-primary">Problem</dt>
-                  <dd className="mt-2 text-sm leading-relaxed text-text-muted">
+                  <dd className="mt-3 text-sm leading-relaxed text-text-muted">
                     {item.caseStudy.problem}
                   </dd>
-                </div>
-                <div>
+                </dl>
+                <dl className="border-t-2 border-border-emphasis pt-5">
                   <dt className="text-sm font-medium text-text-primary">Decision</dt>
-                  <dd className="mt-2 text-sm leading-relaxed text-text-muted">
+                  <dd className="mt-3 text-sm leading-relaxed text-text-muted">
                     {item.caseStudy.decision}
                   </dd>
-                </div>
-                <div>
+                </dl>
+                <dl className="border-t-2 border-border-emphasis pt-5">
                   <dt className="text-sm font-medium text-text-primary">Outcome</dt>
-                  <dd className="mt-2 text-sm leading-relaxed text-text-muted">
+                  <dd className="mt-3 text-sm leading-relaxed text-text-muted">
                     {item.caseStudy.outcome}
                   </dd>
-                </div>
-              </dl>
-
-              <div className="mt-7 flex flex-wrap gap-2">
-                {item.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-md bg-bg-secondary px-2.5 py-1 text-xs text-text-muted"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                </dl>
               </div>
+
+              <p className="mt-9 text-xs leading-relaxed text-text-subtle">
+                <span className="font-medium text-text-muted">Technologies:</span>{' '}
+                {item.tags.join(', ')}
+              </p>
             </article>
           ))}
         </div>
