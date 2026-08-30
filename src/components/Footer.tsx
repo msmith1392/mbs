@@ -66,26 +66,28 @@ function Footer(): React.JSX.Element {
   }
 
   return (
-    <footer className="border-t border-border bg-(--color-bg-primary) px-6 py-10">
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 text-center">
+    <footer className="border-t border-border px-6 py-10">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <Link to="/" onClick={handleWordmarkClick} className="inline-block">
-            <img src={mbscWordmarkSm} alt="Matthew B. Smith" className="h-6 w-auto" />
+            <img src={mbscWordmarkSm} alt="Matthew B. Smith" className="h-5 w-auto" />
           </Link>
-          <p className="mt-3 text-sm text-text-muted">Senior Software Engineer. Somerset, KY.</p>
-          <p className="mt-2 text-xs text-text-subtle">
+          <p className="mt-3 font-mono text-xs text-text-muted">
+            Senior Software Engineer. Somerset, KY.
+          </p>
+          <p className="mt-2 font-mono text-xs text-text-subtle">
             &copy; {new Date().getFullYear()} Matthew Smith
           </p>
         </div>
 
-        <nav className="flex justify-center gap-2" aria-label="Footer">
+        <nav className="flex gap-1" aria-label="Footer">
           <a
             href="https://www.linkedin.com/in/matthew-smith-22310b111/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
             title="LinkedIn"
-            className="flex h-11 w-11 items-center justify-center rounded-md text-text-subtle transition-colors hover:bg-bg-secondary hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="flex h-11 w-11 items-center justify-center rounded-md text-text-subtle transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             <LinkedInIcon />
           </a>
@@ -95,7 +97,7 @@ function Footer(): React.JSX.Element {
             rel="noopener noreferrer"
             aria-label="GitHub"
             title="GitHub"
-            className="flex h-11 w-11 items-center justify-center rounded-md text-text-subtle transition-colors hover:bg-bg-secondary hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="flex h-11 w-11 items-center justify-center rounded-md text-text-subtle transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             <GitHubIcon />
           </a>
@@ -105,7 +107,7 @@ function Footer(): React.JSX.Element {
             rel="noopener noreferrer"
             aria-label="Resume"
             title="Resume"
-            className="flex h-11 w-11 items-center justify-center rounded-md text-text-subtle transition-colors hover:bg-bg-secondary hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="flex h-11 w-11 items-center justify-center rounded-md text-text-subtle transition-colors hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             <ResumeIcon />
           </a>

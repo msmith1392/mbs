@@ -67,7 +67,7 @@ function Header(): React.JSX.Element {
       <a
         key={item.href}
         href={item.href}
-        className="rounded-md px-3 py-2 text-sm font-medium text-text-muted transition-colors hover:bg-bg-secondary hover:text-text-primary"
+        className="px-2.5 py-1 text-sm text-text-muted transition-colors hover:text-text-primary"
         onClick={(e) => handleNavClick(e, item)}
       >
         {item.label}
@@ -80,7 +80,7 @@ function Header(): React.JSX.Element {
       <a
         key={item.href}
         href={item.href}
-        className="rounded-md px-3 py-3 text-base font-medium text-text-muted transition-colors hover:bg-bg-secondary hover:text-text-primary"
+        className="rounded-md px-3 py-3 text-base text-text-muted transition-colors hover:text-text-primary"
         onClick={(e) => {
           handleNavClick(e, item);
           setMenuOpen(false);
@@ -92,18 +92,19 @@ function Header(): React.JSX.Element {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-(--color-bg-primary)/95 backdrop-blur-sm">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
+    <header className="sticky top-0 z-50 border-b border-border bg-(--color-bg-primary)/70 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-2.5">
         <Link
           to="/"
           className="flex items-center"
           onClick={() => {
             if (pathname === '/') {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+              window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
             }
           }}
         >
-          <img src={msbcWordmark} alt="Matthew B. Smith" className="h-7 w-auto" />
+          <img src={msbcWordmark} alt="Matthew B. Smith" className="h-6 w-auto" />
         </Link>
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
           {pathname === '/' && siteNavLinks.map(renderDesktopLink)}
@@ -112,13 +113,13 @@ function Header(): React.JSX.Element {
           <button
             ref={menuButtonRef}
             type="button"
-            className="rounded-md p-2 text-text-muted transition-colors hover:bg-bg-secondary hover:text-text-primary md:hidden"
+            className="rounded-md p-2 text-text-muted transition-colors hover:text-text-primary md:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         )}
       </div>
@@ -126,7 +127,7 @@ function Header(): React.JSX.Element {
         <nav
           ref={mobileNavRef}
           id="mobile-nav"
-          className="mx-auto flex max-w-5xl flex-col gap-1 border-t border-border bg-(--color-bg-primary) px-3 py-3 md:hidden"
+          className="mx-auto flex max-w-6xl flex-col gap-1 border-t border-border bg-(--color-bg-primary)/95 px-3 py-3 md:hidden"
           aria-label="Primary mobile"
         >
           {siteNavLinks.map(renderMobileLink)}

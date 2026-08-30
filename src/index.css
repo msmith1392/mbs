@@ -1,21 +1,40 @@
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
+@import '@fontsource-variable/geist/wght.css';
+@import '@fontsource-variable/geist-mono/wght.css';
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --color-bg-primary: #0b0d10;
-  --color-bg-secondary: #11141a;
-  --color-bg-tertiary: #181c23;
-  --color-accent: #60a5fa;
-  --color-accent-hover: #93c5fd;
-  --color-text-on-accent: #0b0d10;
-  --color-text-primary: #f4f4f5;
-  --color-text-muted: #a1a1aa;
-  --color-text-subtle: #858993;
-  --color-border: #272a31;
-  --color-border-emphasis: #3f434c;
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    'Geist Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-bg-primary: oklch(0.145 0.01 260);
+  --color-bg-secondary: oklch(0.19 0.012 260);
+  --color-bg-tertiary: oklch(0.22 0.012 260);
+  --color-accent: oklch(0.78 0.11 232);
+  --color-accent-hover: oklch(0.84 0.09 232);
+  --color-cta: oklch(0.97 0.005 260);
+  --color-cta-hover: oklch(0.9 0.008 260);
+  --color-text-on-cta: oklch(0.145 0.01 260);
+  --color-text-on-accent: oklch(0.145 0.01 260);
+  --color-text-primary: oklch(0.97 0.005 260);
+  --color-text-muted: oklch(0.72 0.015 260);
+  --color-text-subtle: oklch(0.62 0.015 260);
+  --color-border: oklch(1 0 0 / 0.08);
+  --color-border-emphasis: oklch(1 0 0 / 0.12);
+
+  --animate-enter: enter 0.55s ease both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @layer base {
@@ -24,9 +43,15 @@
   }
 
   body {
-    background-color: #0b0d10;
+    background-color: var(--color-bg-primary);
+    background-image: radial-gradient(
+      ellipse 90% 42% at 50% -12%,
+      oklch(0.42 0.05 232 / 0.16),
+      transparent 58%
+    );
+    background-attachment: fixed;
     color: var(--color-text-primary);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
   }
 
   ::selection {
@@ -39,5 +64,12 @@
   h3 {
     font-weight: 500;
     text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 180ms;
   }
 }
