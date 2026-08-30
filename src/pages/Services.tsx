@@ -65,16 +65,16 @@ const processSteps: ProcessStep[] = [
 function ServicesPage(): React.JSX.Element {
   return (
     <>
-      <section className="bg-(--color-bg-primary) px-6 py-14 sm:py-16">
-        <div className="mx-auto max-w-5xl">
+      <section className="px-6 py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl">
           <Link
             to="/"
-            className="text-sm font-medium text-text-subtle transition-colors hover:text-accent"
+            className="font-mono text-xs text-text-subtle transition-colors hover:text-accent"
           >
             ← matthewbsmith.com
           </Link>
-          <div className="mt-10 max-w-3xl">
-            <h1 className="text-4xl leading-tight tracking-tight text-text-primary sm:text-5xl">
+          <div className="mt-10 max-w-3xl motion-safe:animate-enter">
+            <h1 className="text-4xl leading-tight tracking-tight text-text-primary sm:text-5xl lg:text-6xl">
               I work with clients who need something built for them.
             </h1>
             <p className="mt-6 text-base leading-relaxed text-text-muted">
@@ -87,41 +87,48 @@ function ServicesPage(): React.JSX.Element {
         </div>
       </section>
 
-      <section className="border-y border-border bg-bg-secondary px-6 py-14">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-3xl tracking-tight text-text-primary">What I work on</h2>
-          <div className="mt-8 border-b border-border">
-            {serviceItems.map((item) => (
-              <LabeledEntry
-                key={item.title}
-                label={item.category}
-                title={item.title}
-                description={item.description}
-              />
-            ))}
+      <section className="border-t border-border px-6 py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-16">
+          <p className="mb-6 font-mono text-xs text-text-subtle lg:mb-0">Services</p>
+          <div>
+            <h2 className="text-3xl tracking-tight text-text-primary">What I work on</h2>
+            <div className="mt-8 border-b border-border">
+              {serviceItems.map((item) => (
+                <LabeledEntry
+                  key={item.title}
+                  label={item.category}
+                  title={item.title}
+                  description={item.description}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-(--color-bg-primary) px-6 py-14">
-        <div className="mx-auto max-w-5xl">
-          <h2 className="text-3xl tracking-tight text-text-primary">What to expect</h2>
-          <div className="mt-8 border-b border-border">
-            {processSteps.map((step) => (
-              <LabeledEntry
-                key={step.title}
-                label={step.deliverable}
-                title={step.title}
-                description={step.description}
-              />
-            ))}
+      <section className="border-t border-border px-6 py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-16">
+          <p className="mb-6 font-mono text-xs text-text-subtle lg:mb-0">Process</p>
+          <div>
+            <h2 className="text-3xl tracking-tight text-text-primary">What to expect</h2>
+            <div className="mt-8 border-b border-border">
+              {processSteps.map((step) => (
+                <LabeledEntry
+                  key={step.title}
+                  label={step.deliverable}
+                  title={step.title}
+                  description={step.description}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-border bg-bg-secondary px-6 py-14">
-        <div className="mx-auto max-w-5xl">
-          <div className="max-w-2xl rounded-lg border border-border bg-(--color-bg-primary) p-6 sm:p-8">
+      <section className="border-t border-border px-6 py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-16">
+          <p className="mb-6 font-mono text-xs text-text-subtle lg:mb-0">Next</p>
+          <div className="max-w-2xl rounded-lg border border-border bg-bg-secondary p-6 sm:p-8">
             <h2 className="text-2xl text-text-primary">Ready to talk?</h2>
             <p className="mt-3 text-sm leading-relaxed text-text-muted">
               The first conversation is free. Send me a short description of your organization, what
@@ -132,7 +139,7 @@ function ServicesPage(): React.JSX.Element {
                 href="https://www.linkedin.com/in/matthew-smith-22310b111/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-(--color-text-on-accent) transition-colors hover:bg-accent-hover"
+                className="rounded-md bg-cta px-4 py-2.5 text-sm font-medium text-text-on-cta transition-colors hover:bg-cta-hover"
               >
                 Message me on LinkedIn
               </a>

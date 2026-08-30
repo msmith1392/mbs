@@ -28,39 +28,43 @@ React 19, TypeScript 6, Vite 8, Tailwind CSS v4 (`@tailwindcss/vite`), React Rou
 | `/services` | Client work, **not** in header nav and **not** linked from homepage |
 | `*`         | NotFound                                                            |
 
-Header nav (`src/data/siteNav.ts`) renders only on `/`. Nav order: Highlights, Experience, Contact. Links scroll to section IDs via `scrollIntoView`: `highlights`, `experience`, `contact`. Sections use `scroll-mt-20` where sticky header overlap matters.
+Header nav (`src/data/siteNav.ts`) renders only on `/`. Nav order: Highlights, Experience, Contact. Links scroll to section IDs via `scrollIntoView`: `highlights`, `experience`, `contact`. Sections use `scroll-mt-24` where sticky header overlap matters.
 
 ## Design system
 
-The site uses a quiet dark technical personal-site aesthetic. Tokens live in `src/index.css` `@theme`. Use Tailwind semantic classes from those tokens:
+The site uses a dark product-craft aesthetic: zinc surfaces, hairline borders, Geist type, and a white primary CTA. Tokens live in `src/index.css` `@theme` as OKLCH values. Use Tailwind semantic classes from those tokens:
 
 - Backgrounds: `bg-(--color-bg-primary)`, `bg-bg-secondary`, `bg-bg-tertiary`
 - Text: `text-text-primary`, `text-text-muted`, `text-text-subtle`
-- Accent: `text-accent`, `bg-accent`, `hover:text-accent`
+- Accent: `text-accent`, `hover:text-accent` for labels, links, and focus
+- CTA: `bg-cta`, `hover:bg-cta-hover`, `text-text-on-cta` for primary buttons
 - Borders: `border-border`, `border-border-emphasis`
 
-Use `bg-(--color-bg-primary)` for the near-black primary surface and `bg-bg-secondary` for subtle section and card contrast. Dividers use `border-border` or `border-border-emphasis`.
+Keep one atmosphere. Do not alternate full-bleed section fills. Use hairline `border-t border-border` dividers and `bg-bg-secondary` only for raised panels.
 
-`body { background-color: #0b0d10 }` in `index.css` prevents mismatched overscroll on iOS.
+`body` uses `background-color: var(--color-bg-primary)` plus a faint top radial so iOS overscroll matches the page.
 
-Typography: Inter for headings and body copy, weights 400 or 500. Inter is loaded through `@fontsource` in `index.css`.
+Typography: Geist Sans variable for UI and headings (weight 400 or 500). Geist Mono variable for section kickers, dates, and tech lists. Both load through `@fontsource-variable` in `index.css`. Headings use `font-medium` via the base `font-weight: 500` rule, not bold.
 
-Layout convention: `section` with an `mx-auto max-w-5xl` wrapper and `px-6 py-16`. Use familiar headings, restrained blue accents, subtle borders, and small border radii. Avoid decorative metadata, numbered sections, and oversized display type.
+Layout convention: `section` with `px-6 py-20 sm:py-28` and an `mx-auto max-w-6xl` wrapper. On large screens, section kickers sit in a `10rem` left column (`lg:grid-cols-[10rem_minmax(0,1fr)]`). Hero is a two-column split (copy left, portrait right). Motion is CSS only (`motion-safe:animate-enter`, header `backdrop-blur`). Honor `prefers-reduced-motion`. Do not add animation libraries.
 
 Token reference:
 
 ```css
---color-bg-primary: #0b0d10;
---color-bg-secondary: #11141a;
---color-bg-tertiary: #181c23;
---color-accent: #60a5fa;
---color-accent-hover: #93c5fd;
---color-text-on-accent: #0b0d10;
---color-text-primary: #f4f4f5;
---color-text-muted: #a1a1aa;
---color-text-subtle: #858993;
---color-border: #272a31;
---color-border-emphasis: #3f434c;
+--color-bg-primary: oklch(0.145 0.01 260);
+--color-bg-secondary: oklch(0.19 0.012 260);
+--color-bg-tertiary: oklch(0.22 0.012 260);
+--color-accent: oklch(0.78 0.11 232);
+--color-accent-hover: oklch(0.84 0.09 232);
+--color-cta: oklch(0.97 0.005 260);
+--color-cta-hover: oklch(0.9 0.008 260);
+--color-text-on-cta: oklch(0.145 0.01 260);
+--color-text-on-accent: oklch(0.145 0.01 260);
+--color-text-primary: oklch(0.97 0.005 260);
+--color-text-muted: oklch(0.72 0.015 260);
+--color-text-subtle: oklch(0.62 0.015 260);
+--color-border: oklch(1 0 0 / 0.08);
+--color-border-emphasis: oklch(1 0 0 / 0.12);
 ```
 
 ## Component patterns
@@ -68,7 +72,7 @@ Token reference:
 - **Pages** (`src/pages/`): compose section components; keep page files thin.
 - **Sections** (`src/components/`): one component per homepage block.
 - **Data**: shared config in `src/data/` (`constants.ts`, `siteNav.ts`). Page-specific lists as typed arrays colocated in the page or section file (see `Services.tsx`, `HighlightedWork.tsx`).
-- **LabeledEntry**: shared label/title/description block for `/services`. Reuse its visual language (`text-sm font-medium text-accent`, `border-t border-border py-8`) for similar content.
+- **LabeledEntry**: shared label/title/description block for `/services`. Reuse its visual language (`font-mono text-xs text-accent`, `border-t border-border py-8`) for similar content.
 - **Assets**: SVGs imported from `src/assets/`. PNGs/PDFs served from `public/`.
 
 ## Project structure
@@ -89,7 +93,7 @@ public/          # favicon.png, og-image.png, robots.txt, sitemap.xml, MatthewSm
 
 ## Components
 
-- **Hero.tsx** - compact two-column introduction with resume and contact actions and natural-color headshot
+- **Hero.tsx** - split introduction: copy and white resume CTA on the left, larger natural-color portrait on the right
 - **Experience.tsx** - professional timeline with four roles from a data array
 - **HighlightedWork.tsx** - readable case-study cards with Problem/Decision/Outcome sections
 - **Contact.tsx** - light LinkedIn, resume, and GitHub contact directory
@@ -126,8 +130,11 @@ Prettier: single quotes, semicolons, 2-space indent, 100 char width. ESLint for 
 // Component shape
 function Example(): React.JSX.Element {
   return (
-    <section className="bg-(--color-bg-primary) px-6 py-16">
-      <div className="mx-auto max-w-5xl">...</div>
+    <section className="border-t border-border px-6 py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-16">
+        <p className="mb-6 font-mono text-xs text-text-subtle lg:mb-0">Kicker</p>
+        <div>...</div>
+      </div>
     </section>
   );
 }

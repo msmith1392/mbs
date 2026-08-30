@@ -19,9 +19,10 @@ const roles: Role[] = [
     endDate: 'Present',
     bullets: [
       'Built real-time presence tracking for the Unified Reporting Tool (URT), using session records, polling, and configurable timeout behavior to reduce accidental overwrite risk across concurrent federal users.',
-      'Designed and built the Svelte frontend for a TypeScript monorepo of AWS serverless applications serving as a unified access portal for FEMA platforms including PrepToolkit, RTLT, RIS, and OneResponder.',
-      'Automated enterprise reporting with Docmosis and Apache POI, cutting processing time ' +
-        'from hours to minutes for national emergency preparedness programs.',
+      'Delivered a reusable PrepToolkit calendar portlet configurable for HSEEP or REP, with day, month, year, and 8-year views, filtered event APIs, and PDF export.',
+      'Owned a searchable HSEEP exercise-template library and copy workflow, including permission-aware cross-domain access, selective copying of modules and simulation data, and Playwright coverage for creation and compatibility rules.',
+      'Built Svelte access-management UI and TypeScript Lambda APIs in a serverless monorepo, covering user-admin workflows for pending requests, current access, activity history, and bulk site-membership changes.',
+      'Modernized ten FEMA report and data-extract workflows using MySQL JSON functions and Docmosis templates, including current and legacy routing for changing annual assessment requirements.',
       'Delivered full-stack features that translated FEMA program requirements (THIRA/SPR, CPG, NIMS, UAWG) into technical solutions in coordination with project leads to meet federal compliance and security standards.',
     ],
     techStack: [
@@ -31,6 +32,7 @@ const roles: Role[] = [
       '.NET',
       'Svelte',
       'TypeScript',
+      'Playwright',
       'React',
       'AWS Lambda',
       'Node.js',
@@ -83,53 +85,52 @@ const roles: Role[] = [
 
 function Experience(): React.JSX.Element {
   return (
-    <section
-      id="experience"
-      className="scroll-mt-20 bg-(--color-bg-primary) px-6 py-20 sm:py-24"
-    >
-      <div className="mx-auto max-w-4xl">
-        <h2 className="text-center text-3xl tracking-tight text-text-primary sm:text-4xl">
-          Engineering Experience
-        </h2>
+    <section id="experience" className="scroll-mt-24 border-t border-border px-6 py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-16">
+        <p className="mb-6 font-mono text-xs text-text-subtle lg:mb-0">Experience</p>
+        <div>
+          <h2 className="text-3xl tracking-tight text-text-primary sm:text-4xl">
+            Engineering Experience
+          </h2>
 
-        <div className="mt-12 border-t border-border-emphasis">
-          {roles.map((role) => (
-            <article
-              key={`${role.company}-${role.startDate}`}
-              className="border-b border-border py-9"
-            >
-              <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-                <h3 className="text-xl text-text-primary">{role.jobTitle}</h3>
-                <p className="shrink-0 text-sm text-text-subtle">
-                  {role.startDate} to {role.endDate}
+          <div className="mt-10">
+            {roles.map((role) => (
+              <article
+                key={`${role.company}-${role.startDate}`}
+                className="border-t border-border py-9"
+              >
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                  <h3 className="text-xl text-text-primary">{role.jobTitle}</h3>
+                  <p className="shrink-0 font-mono text-xs text-text-subtle">
+                    {role.startDate} to {role.endDate}
+                  </p>
+                </div>
+                <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-sm">
+                  <span className="text-accent">{role.company}</span>
+                  <span className="text-text-subtle">{role.location}</span>
+                </div>
+
+                <ul className="mt-6 max-w-3xl space-y-3">
+                  {role.bullets.map((bullet) => (
+                    <li
+                      key={bullet.slice(0, 40)}
+                      className="flex gap-3 text-sm leading-relaxed text-text-muted"
+                    >
+                      <span
+                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-border-emphasis"
+                        aria-hidden="true"
+                      />
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="mt-6 font-mono text-xs leading-relaxed text-text-subtle">
+                  <span className="text-text-muted">Technologies:</span> {role.techStack.join(', ')}
                 </p>
-              </div>
-              <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-sm">
-                <span className="font-medium text-accent">{role.company}</span>
-                <span className="text-text-subtle">{role.location}</span>
-              </div>
-
-              <ul className="mt-6 max-w-3xl space-y-3">
-                {role.bullets.map((bullet) => (
-                  <li
-                    key={bullet.slice(0, 40)}
-                    className="flex gap-3 text-sm leading-relaxed text-text-muted"
-                  >
-                    <span
-                      className="mt-2 h-1.5 w-1.5 shrink-0 bg-accent"
-                      aria-hidden="true"
-                    />
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-
-              <p className="mt-6 text-xs leading-relaxed text-text-subtle">
-                <span className="font-medium text-text-muted">Technologies:</span>{' '}
-                {role.techStack.join(', ')}
-              </p>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
