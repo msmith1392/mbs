@@ -1,173 +1,199 @@
-# AGENTS.md — Matthew B. Smith (matthewbsmith.com)
+# matthewbsmith.com Guide
 
-Personal portfolio site. Primary audience: W2/C2C recruiters. Secondary: local Kentucky client work on `/services`.
+Important: never edit this file without confirming with Matt first.
 
-Human onboarding: `README.md`. Cursor-specific rules: `.cursor/rules/mbs.mdc`.
+Personal site for Matthew B. Smith, a senior software engineer. The homepage is a
+portfolio for recruiters and hiring managers. `/services` covers local client work and is
+reached by direct link only.
 
-## Hard rules
+Claude Code loads this file through `CLAUDE.md`. Cursor and Codex read it directly.
+Human onboarding lives in `README.md`. When routes, layout, tokens, or deployment
+change, propose the matching update to this file.
 
-- **Voice**: First-person singular only (`I`, `my`, `me`). Every `we`/`our`/`us` is a bug.
-- **Brand**: Personal portfolio, not "Matthew B. Smith Consulting" or an LLC. Wordmark: MATTHEW B. SMITH.
-- **Copy**: No em dashes. No AI-sounding prose.
-- **Styling**: Tailwind utility classes only. No inline `style={}`.
-- **TypeScript**: `strict: true`. Explicit return types on functions. Components return `React.JSX.Element`.
-- **Imports**: Use `import type` for type-only imports (`verbatimModuleSyntax`, `erasableSyntaxOnly`).
-- **Scope**: Minimal diffs. Match existing patterns. Do not refactor unrelated code.
+## Repo Layout
+
+- `src/pages`: route components (`Home`, `Services`, `NotFound`). Keep them thin; they
+  compose sections.
+- `src/components`: one component per homepage section, plus shared layout pieces
+  (`Header`, `Footer`, `SkipToMain`, `ScrollToTop`, `LabeledEntry`).
+- `src/data`: shared config. `constants.ts` holds `CAREER_START` and `FEDERAL_START`;
+  `siteNav.ts` holds the header nav links.
+- `src/hooks`: `useYearsOfExperience.ts`, which turns a start date into whole years.
+- `src/assets`: SVG sources for the wordmarks, favicon, and OG image.
+- `src/index.css`: Tailwind entry point and `@theme` design tokens.
+- `src/App.tsx`: router and page shell. `src/main.tsx`: entry point.
+- `public`: portrait, favicon, OG image, resume PDF/DOCX, `robots.txt`, `sitemap.xml`.
+- `index.html`: title, meta description, Open Graph tags, and JSON-LD.
+- `plans`: local planning docs. Gitignored.
 
 ## Stack
 
-React 19, TypeScript 6, Vite 8, Tailwind CSS v4 (`@tailwindcss/vite`), React Router v7 (`BrowserRouter`), Lucide React. Cloudflare Workers static assets only. No Worker API and no contact form.
+- React 19, TypeScript 6, Vite 8.
+- Tailwind CSS v4 through `@tailwindcss/vite`.
+- React Router v7 (`BrowserRouter`).
+- Lucide React for UI icons. Brand icons (LinkedIn, GitHub) are inline SVG in
+  `Footer.tsx`.
+- Geist Sans and Geist Mono through `@fontsource-variable`.
+- Cloudflare Workers static assets. No Worker API, backend, or contact form.
+- `framer-motion` is in `package.json` but unused. Do not import it.
 
-`framer-motion` is in `package.json` but unused. Do not add animation libraries unless asked.
+## Routes
 
-## Routes and nav
+| Route       | Content                                                  |
+| ----------- | -------------------------------------------------------- |
+| `/`         | `Hero`, `HighlightedWork`, `Experience`, `Contact`       |
+| `/services` | Client work. Not in the header nav, not linked from `/`. |
+| `*`         | `NotFound`                                               |
 
-| Route       | Content                                                             |
-| ----------- | ------------------------------------------------------------------- |
-| `/`         | Hero, HighlightedWork, Experience, Contact                          |
-| `/services` | Client work, **not** in header nav and **not** linked from homepage |
-| `*`         | NotFound                                                            |
+- The header nav renders only on `/`. Links scroll to section IDs `highlights`,
+  `experience`, and `contact`.
+- When adding, removing, or reordering a homepage section, update `Home.tsx`,
+  `siteNav.ts`, this table, and the README together.
 
-Header nav (`src/data/siteNav.ts`) renders only on `/`. Nav order: Highlights, Experience, Contact. Links scroll to section IDs via `scrollIntoView`: `highlights`, `experience`, `contact`. Sections use `scroll-mt-24` where sticky header overlap matters.
+## Content Rules
 
-## Design system
+- First person singular only (`I`, `my`, `me`). Any `we`, `our`, or `us` is a bug.
+- No em dashes.
+- Write plainly. State what was built and what it changed. Avoid filler words like
+  "leverage", "passionate", or "seamless", and avoid hype.
+- Never publish an email address anywhere: UI, metadata, docs, or generated assets.
+  Contact goes through LinkedIn, the resume, and GitHub.
+- Do not describe the site or its owner as a company, agency, or consultancy.
 
-The site uses a dark product-craft aesthetic: zinc surfaces, hairline borders, Geist type, and a white primary CTA. Tokens live in `src/index.css` `@theme` as OKLCH values. Use Tailwind semantic classes from those tokens:
+## Layout and Design
 
-- Backgrounds: `bg-(--color-bg-primary)`, `bg-bg-secondary`, `bg-bg-tertiary`
-- Text: `text-text-primary`, `text-text-muted`, `text-text-subtle`
-- Accent: `text-accent`, `hover:text-accent` for labels, links, and focus
-- CTA: `bg-cta`, `hover:bg-cta-hover`, `text-text-on-cta` for primary buttons
-- Borders: `border-border`, `border-border-emphasis`
+- One narrow column. Every page wraps content in `mx-auto max-w-2xl`. The header and
+  footer use the same width.
+- Sections use `border-t border-border px-6 py-16 sm:py-20`. The first section on a page
+  has no top border.
+- Section headings are `h2` with `text-lg text-text-primary`, followed by an optional
+  `text-sm text-text-muted` intro.
+- List entries (highlights, roles, services) are separated by `border-t border-border
+py-8 first:border-t-0`. Titles are `text-base`. Secondary labels and dates sit on the
+  right in `font-mono text-xs text-text-subtle`, wrapping below on narrow screens.
+- Tech lists and small metadata use Geist Mono at `text-xs`.
+- Headings use weight 500 through the base rule. Do not use bold.
+- One primary CTA style: `bg-cta text-text-on-cta hover:bg-cta-hover`. Secondary actions
+  are plain text links.
+- Keep layouts readable at 375px wide with no horizontal scroll. Prefer content that
+  wraps over content that stacks into a narrow column.
+- Footer content is centered: wordmark, text, then icons.
+- Motion is CSS only (`motion-safe:animate-enter`). Honor `prefers-reduced-motion`.
 
-Keep one atmosphere. Do not alternate full-bleed section fills. Use hairline `border-t border-border` dividers and `bg-bg-secondary` only for raised panels.
+## Design Tokens
 
-`body` uses `background-color: var(--color-bg-primary)` plus a faint top radial so iOS overscroll matches the page.
+- Tokens live in `src/index.css` under `@theme` as OKLCH values. That file is the source
+  of truth.
+- Use the generated semantic classes, never raw colors:
+  - Backgrounds: `bg-(--color-bg-primary)`, `bg-bg-secondary`, `bg-bg-tertiary`
+  - Text: `text-text-primary`, `text-text-muted`, `text-text-subtle`
+  - Accent: `text-accent`, `hover:text-accent-hover` for links and focus
+  - CTA: `bg-cta`, `hover:bg-cta-hover`, `text-text-on-cta`
+  - Borders: `border-border`, `border-border-emphasis`
+- Keep one dark atmosphere. Do not alternate full-bleed section backgrounds.
 
-Typography: Geist Sans variable for UI and headings (weight 400 or 500). Geist Mono variable for section kickers, dates, and tech lists. Both load through `@fontsource-variable` in `index.css`. Headings use `font-medium` via the base `font-weight: 500` rule, not bold.
+## Code Style
 
-Layout convention: `section` with `px-6 py-20 sm:py-28` and an `mx-auto max-w-6xl` wrapper. On large screens, section kickers sit in a `10rem` left column (`lg:grid-cols-[10rem_minmax(0,1fr)]`). Hero is a two-column split (copy left, portrait right). Motion is CSS only (`motion-safe:animate-enter`, header `backdrop-blur`). Honor `prefers-reduced-motion`. Do not add animation libraries.
-
-Token reference:
-
-```css
---color-bg-primary: oklch(0.145 0.01 260);
---color-bg-secondary: oklch(0.19 0.012 260);
---color-bg-tertiary: oklch(0.22 0.012 260);
---color-accent: oklch(0.78 0.11 232);
---color-accent-hover: oklch(0.84 0.09 232);
---color-cta: oklch(0.97 0.005 260);
---color-cta-hover: oklch(0.9 0.008 260);
---color-text-on-cta: oklch(0.145 0.01 260);
---color-text-on-accent: oklch(0.145 0.01 260);
---color-text-primary: oklch(0.97 0.005 260);
---color-text-muted: oklch(0.72 0.015 260);
---color-text-subtle: oklch(0.62 0.015 260);
---color-border: oklch(1 0 0 / 0.08);
---color-border-emphasis: oklch(1 0 0 / 0.12);
-```
-
-## Component patterns
-
-- **Pages** (`src/pages/`): compose section components; keep page files thin.
-- **Sections** (`src/components/`): one component per homepage block.
-- **Data**: shared config in `src/data/` (`constants.ts`, `siteNav.ts`). Page-specific lists as typed arrays colocated in the page or section file (see `Services.tsx`, `HighlightedWork.tsx`).
-- **LabeledEntry**: shared label/title/description block for `/services`. Reuse its visual language (`font-mono text-xs text-accent`, `border-t border-border py-8`) for similar content.
-- **Assets**: SVGs imported from `src/assets/`. PNGs/PDFs served from `public/`.
-
-## Project structure
-
-```
-src/
-  components/    # Page sections and UI components
-  pages/         # Home, Services, NotFound
-  assets/        # SVG source files
-    demo-cards/  # Portfolio screenshot PNGs
-  data/          # constants.ts (CAREER_START, FEDERAL_START), siteNav.ts
-  hooks/         # useYearsOfExperience.ts
-  index.css      # Tailwind entry point + theme tokens
-  main.tsx       # Entry point
-  App.tsx        # Router and layout
-public/          # favicon.png, og-image.png, robots.txt, sitemap.xml, MatthewSmithResume.pdf
-```
-
-## Components
-
-- **Hero.tsx** - split introduction: copy and white resume CTA on the left, larger natural-color portrait on the right
-- **Experience.tsx** - professional timeline with four roles from a data array
-- **HighlightedWork.tsx** - readable case-study cards with Problem/Decision/Outcome sections
-- **Contact.tsx** - light LinkedIn, resume, and GitHub contact directory
-- **Header.tsx** - compact sticky nav, SVG wordmark, reduced-motion-aware scrolling, mobile menu with focus trap
-- **Footer.tsx** - identity, location, copyright, and plain text links
-- **LabeledEntry.tsx** - shared label/title/description pattern for `/services`
-- **SkipToMain.tsx** — skip link for keyboard/screen reader users
-- **ScrollToTop.tsx** — scrolls to top on route change
-- **pages/Services.tsx** — local client work; uses `LabeledEntry` for What I work on and What to expect
-
-## Assets
-
-| File                              | Purpose                                           |
-| --------------------------------- | ------------------------------------------------- |
-| `src/assets/mbsc-wordmark.svg`    | Header wordmark (900x70), "MATTHEW B. SMITH" only |
-| `src/assets/mbsc-wordmark-sm.svg` | Footer wordmark (680x50)                          |
-| `src/assets/favicon-512x512.svg`  | Source SVG for `public/favicon.png`               |
-| `src/assets/og-image1200x630.svg` | Source SVG for `public/og-image.png`              |
-| `src/assets/demo-cards/`          | Portfolio screenshot PNGs                         |
-| `public/favicon.png`              | 512x512 favicon                                   |
-| `public/og-image.png`             | 1200x630 social preview                           |
-| `public/MatthewSmithResume.pdf`   | Downloadable CV (PDF)                             |
-| `public/MatthewSmithResume.docx`  | Downloadable CV (Word)                            |
-
-Regenerate `public/og-image.png`: open `src/assets/og-image1200x630.svg` in Chrome, DevTools viewport 1200x630, screenshot, save to `public/og-image.png`.
-
-Regenerate `public/favicon.png`: open `src/assets/favicon-512x512.svg` in Chrome, capture at 512x512, save to `public/favicon.png`.
-
-## Code style
-
-Prettier: single quotes, semicolons, 2-space indent, 100 char width. ESLint for logic/quality (`eslint-config-prettier` prevents conflicts). Run `npm run lint` after substantive changes.
-
-```tsx
-// Component shape
-function Example(): React.JSX.Element {
-  return (
-    <section className="border-t border-border px-6 py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-16">
-        <p className="mb-6 font-mono text-xs text-text-subtle lg:mb-0">Kicker</p>
-        <div>...</div>
-      </div>
-    </section>
-  );
-}
-```
+- Read neighboring files first and match their naming, class order, and data shape.
+- Keep diffs minimal. Do not refactor unrelated code.
+- TypeScript `strict`. Explicit return types on functions. Components return
+  `React.JSX.Element`.
+- Use `import type` for type-only imports (`verbatimModuleSyntax`,
+  `erasableSyntaxOnly`).
+- Tailwind utility classes only. No inline `style={}`.
+- Page-specific content lives in typed arrays at the top of the page or section file
+  (see `HighlightedWork.tsx`, `Experience.tsx`, `Services.tsx`).
+- Prettier: single quotes, semicolons, 2-space indent, ES5 trailing commas, 100 character
+  width. ESLint handles logic and quality.
+- Do not add tests unless asked.
 
 ## Accessibility
 
-Target Lighthouse accessibility 100. `SkipToMain`, focus trap in mobile nav (return focus to hamburger on close), `aria-label` or visible text on interactive elements, `id="main-content"` on `<main>`.
+- Target Lighthouse accessibility 100.
+- Keep `SkipToMain`, `id="main-content"` on `<main>`, and the mobile nav focus trap that
+  returns focus to the menu button on close.
+- Every interactive element needs visible text or an `aria-label`.
+- Images need meaningful `alt` text, or `alt=""` when decorative.
+- Prefer native elements (`<details>`, `<button>`, `<a>`) over custom widgets.
 
-## Contact
+## Planning
 
-Homepage Contact points recruiters to the downloadable resume and professional profiles. Do not publish the raw mailbox address in UI, metadata, docs, or generated assets.
+- Keep plans proportional. Small copy or style edits need no plan.
+- For larger changes (new section, new route, token or layout changes), use:
+  1. **Summary**: which files and components change.
+  2. **Decisions**: confirmed requirements versus assumptions. Call out anything that
+     affects copy or SEO metadata.
+  3. **TODOs**: concrete steps naming target files and symbols.
+  4. **Verification**: lint, build, and what to check at mobile and desktop widths.
+- Save multi-session plans in `plans/` (gitignored) and keep their status current.
+
+## Workflow
+
+- Be proactive: read the relevant files, make reasonable assumptions, and implement when
+  the path is clear. Ask when a choice changes content, copy, or the look of the site.
+- Fine to run without asking: file reads, `rg`, `git status`, `git diff`, `npm run lint`,
+  and `npm run build`.
+- Run `npm run lint` and `npm run build` after substantive changes. Fix what you broke.
+  Report pre-existing failures instead of silently fixing them.
+- Matt usually runs `npm run dev` himself. Check whether port 5173 is already in use
+  before starting another dev server.
+- For visual changes, check the page at mobile (375px to 440px) and desktop widths
+  before calling it done.
+- Do not add dependencies unless asked.
+
+## Git
+
+- Do not run `git commit` or `git push` unless explicitly asked. Pushing to `main`
+  deploys to production.
+- Commit subjects use a conventional prefix: `feat:`, `fix:`, `docs:`, `chore:`, or
+  `refactor:`. Follow it with a lowercase imperative summary. Keep the whole subject at
+  50 characters or fewer.
+- Add a body only when the change is not obvious from the subject. Leave a blank line
+  after the subject, write short imperative lines ("Move", "Remove", "Restore"), and put
+  code names in backticks. Wrap at 72 characters.
+- State behavior changes plainly. No filler, and no lists of every file touched.
+- Tag releases on `main` with semver (`git tag -a v1.7.0 -m "message"`) and bump
+  `package.json` `version` to match.
 
 ## Deployment
 
-`wrangler.json`: static `./dist`, `not_found_handling: single-page-application`. No `_redirects`. No Worker API entry. Push to `main` auto-deploys via Cloudflare Workers Builds. `.wrangler` is gitignored.
+- `wrangler.json` serves `./dist` as static assets with
+  `not_found_handling: single-page-application`. No `_redirects` and no Worker entry.
+- Pushes to `main` auto-deploy through Cloudflare Workers Builds.
+- The domain is registered through Cloudflare Registrar.
 
 ```bash
-npm run dev          # UI development
-npm run build        # production build (tsc -b && vite build)
+npm run dev                     # local development
+npm run lint                    # ESLint
+npm run build                   # tsc -b && vite build
 npm run build && wrangler dev   # local production preview
 ```
 
-## DNS
+## Assets
 
-- matthewbsmith.com registered via Cloudflare Registrar
-- Email routing is configured in Cloudflare
-- Cloudflare Email Routing MX and TXT records in place
+- `src/assets/mbsc-wordmark.svg` and `mbsc-wordmark-sm.svg`: header and footer
+  wordmarks. The text is centered inside a wide canvas, so the visible name does not sit
+  flush with the left edge of the image.
+- `src/assets/favicon-512x512.svg`: source for `public/favicon.png`. To regenerate, open
+  it in Chrome and capture at 512x512.
+- `src/assets/og-image1200x630.svg`: source for `public/og-image.png`. It loads Geist
+  from `node_modules` and the photo from `public/` using relative paths, so render it
+  from the repo root:
 
-## Versioning
+  ```bash
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=3000 --allow-file-access-from-files --screenshot="$PWD/public/og-image.png" "file://$PWD/src/assets/og-image1200x630.svg"
+  ```
 
-Conventional commits (`feat`/`fix`/`chore`/`docs`, subject under 50 chars). Semver tags on `main` after releases (e.g. `git tag -a v1.0.0 -m "message"`).
+  Keep it to name, title, location, domain, and avatar so copy changes on the site don't
+  require a new image.
 
-## Do not
+- `public/photo1.webp`: hero avatar. `photo1.jpg` is the original.
+- `public/MatthewSmithResume.pdf` and `.docx`: downloadable resume.
 
-- Commit unless explicitly asked
+## Scope Boundaries
+
+- Do not link `/services` from the homepage or header nav.
+- Do not add a contact form, backend, analytics, or third-party scripts unless asked.
+- Do not edit `dist/` or other build output.
+- Do not edit `public/MatthewSmithResume.*` or regenerate binary assets unless asked.
+- Do not run `wrangler deploy` or change DNS or Cloudflare settings unless asked.

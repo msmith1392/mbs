@@ -30,33 +30,34 @@ const contactOptions: ContactOption[] = [
 
 function Contact(): React.JSX.Element {
   return (
-    <section id="contact" className="scroll-mt-24 border-t border-border px-6 py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-16">
-        <p className="mb-6 font-mono text-xs text-text-subtle lg:mb-0">Contact</p>
-        <div>
-          <h2 className="text-3xl tracking-tight text-text-primary sm:text-4xl">Get In Touch</h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-text-muted sm:text-base">
-            If my background seems relevant to what you are building or hiring for, LinkedIn is the
-            best place to start. My resume and public code are available here too.
-          </p>
+    <section id="contact" className="scroll-mt-20 border-t border-border px-6 py-16 sm:py-20">
+      <div className="mx-auto max-w-2xl">
+        <h2 className="text-lg text-text-primary">Contact</h2>
+        <p className="mt-2 text-sm leading-relaxed text-text-muted">
+          If my background fits what you are building or hiring for, LinkedIn is the best place to
+          start. My resume and public code are here too.
+        </p>
 
-          <div className="mt-10 overflow-hidden rounded-lg border border-border md:grid md:grid-cols-3">
-            {contactOptions.map((option, index) => (
-              <a
-                key={option.title}
-                href={option.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex flex-col items-start p-6 text-left transition-colors hover:bg-bg-secondary focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${index > 0 ? 'border-t border-border md:border-t-0 md:border-l' : ''}`}
-              >
-                <span className="font-mono text-xs text-accent">{option.label}</span>
-                <span className="mt-2 font-medium text-text-primary">{option.title}</span>
-                <span className="mt-2 text-sm leading-relaxed text-text-muted">
+        <div className="mt-6">
+          {contactOptions.map((option) => (
+            <a
+              key={option.title}
+              href={option.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group -mx-3 flex items-start justify-between gap-6 rounded-md px-3 py-4 transition-colors hover:bg-bg-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              <span>
+                <span className="block text-base text-text-primary">{option.title}</span>
+                <span className="mt-1 block text-sm leading-relaxed text-text-muted">
                   {option.description}
                 </span>
-              </a>
-            ))}
-          </div>
+              </span>
+              <span className="shrink-0 pt-0.5 font-mono text-xs text-text-subtle transition-colors group-hover:text-accent">
+                {option.label}
+              </span>
+            </a>
+          ))}
         </div>
       </div>
     </section>

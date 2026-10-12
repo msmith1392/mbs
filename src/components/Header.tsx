@@ -93,7 +93,7 @@ function Header(): React.JSX.Element {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-(--color-bg-primary)/70 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-2.5">
+      <div className="mx-auto flex max-w-2xl items-center justify-between px-6 py-2.5">
         <Link
           to="/"
           className="flex items-center"
@@ -127,7 +127,7 @@ function Header(): React.JSX.Element {
         <nav
           ref={mobileNavRef}
           id="mobile-nav"
-          className="mx-auto flex max-w-6xl flex-col gap-1 border-t border-border bg-(--color-bg-primary)/95 px-3 py-3 md:hidden"
+          className="mx-auto flex max-w-2xl flex-col gap-1 border-t border-border bg-(--color-bg-primary)/95 px-3 py-3 md:hidden"
           aria-label="Primary mobile"
         >
           {siteNavLinks.map(renderMobileLink)}

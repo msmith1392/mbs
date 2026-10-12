@@ -14,9 +14,11 @@ function ScrollToTop(): null {
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduceMotion && typeof document.startViewTransition === 'function') {
-      document.startViewTransition(() => {
+      const transition = document.startViewTransition(() => {
         window.scrollTo({ top: 0 });
       });
+      // A newer transition skips this one; the scroll still runs, so ignore the abort.
+      transition.ready.catch(() => {});
       return undefined;
     }
 

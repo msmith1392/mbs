@@ -1,8 +1,9 @@
 import React from 'react';
+import { ChevronRight } from 'lucide-react';
 
 interface WorkItem {
-  category: string;
   title: string;
+  summary: string;
   description: string;
   caseStudy: {
     problem: string;
@@ -14,8 +15,9 @@ interface WorkItem {
 
 const workItems: WorkItem[] = [
   {
-    category: '4 Arrows Consulting · Federal Systems',
     title: 'Concurrent Editing Safety in FEMA Assessments',
+    summary:
+      'Warns FEMA partners when someone else is editing the same assessment, without locking anyone out.',
     description:
       "PrepToolkit's Unified Reporting Tool supports FEMA partners completing high-stakes preparedness assessments across several national programs.",
     caseStudy: {
@@ -29,8 +31,9 @@ const workItems: WorkItem[] = [
     tags: ['Java', 'Spring Boot', 'REST APIs', 'JPA/Hibernate', 'MySQL'],
   },
   {
-    category: '4 Arrows Consulting · Federal Systems',
     title: 'Reusable FEMA Exercise Templates',
+    summary:
+      'Lets exercise planners start from an approved template instead of rebuilding a complex exercise by hand.',
     description:
       "PrepToolkit's HSEEP module helps FEMA partners plan and conduct preparedness exercises. I built a template library so planners could start from an approved exercise instead of reconstructing the full setup by hand.",
     caseStudy: {
@@ -52,23 +55,9 @@ const workItems: WorkItem[] = [
     ],
   },
   {
-    category: '4 Arrows Consulting · Federal Systems',
-    title: 'Reusable FEMA Exercise Calendar',
-    description:
-      'PrepToolkit needed one calendar that HSEEP and REP teams could configure and reuse instead of maintaining a separate implementation for each division.',
-    caseStudy: {
-      problem:
-        'HSEEP and REP staff needed shared views of exercises, milestones, and events, but each division had its own calendar path. Planners could not drop one calendar onto a page and configure it for their program.',
-      decision:
-        'I owned the calendar end to end across persistence, Spring services, REST APIs, authorization, the client, and Liferay portlet configuration. One portlet can be set to HSEEP or REP, with day, month, year, and 8-year views, filters that stay applied when switching views, generic events, exercise creation from a selected date, region coloring, and PDF export of the active filtered view.',
-      outcome:
-        'Program staff can place one calendar, configure it for their division, and work from a shared filtered view of exercises and events instead of maintaining separate calendar implementations.',
-    },
-    tags: ['Java', 'Spring Boot', 'REST APIs', 'JPA/Hibernate', 'MySQL', 'Liferay'],
-  },
-  {
-    category: '4 Arrows Consulting · Federal Systems',
     title: 'FEMA Platform Access Management',
+    summary:
+      "Gives administrators a real view of each user's access across FEMA platforms, with pending requests and bulk membership changes.",
     description:
       'A TypeScript monorepo of AWS serverless applications supports FEMA platforms including PrepToolkit, URT, RTLT, RIS, and OneResponder. I built the Svelte access-management UI and membership APIs that administrators use to inspect and change user access.',
     caseStudy: {
@@ -85,59 +74,58 @@ const workItems: WorkItem[] = [
 
 function HighlightedWork(): React.JSX.Element {
   return (
-    <section id="highlights" className="scroll-mt-24 border-t border-border px-6 py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl lg:grid lg:grid-cols-[10rem_minmax(0,1fr)] lg:gap-16">
-        <p className="mb-6 font-mono text-xs text-text-subtle lg:mb-0">Highlights</p>
-        <div>
-          <h2 className="text-3xl tracking-tight text-text-primary sm:text-4xl">
-            Highlighted Work
-          </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-text-muted sm:text-base">
-            Selected examples from my work on FEMA preparedness platforms where I owned the problem
-            end to end.
-          </p>
+    <section id="highlights" className="scroll-mt-20 border-t border-border px-6 py-16 sm:py-20">
+      <div className="mx-auto max-w-2xl">
+        <h2 className="text-lg text-text-primary">Highlights</h2>
+        <p className="mt-2 text-sm leading-relaxed text-text-muted">
+          Features I owned end to end on FEMA preparedness platforms at 4 Arrows Consulting.
+        </p>
 
-          <div className="mt-4">
-            {workItems.map((item) => (
-              <article
-                key={item.title}
-                className="border-t border-border py-12 first:mt-10 sm:py-14"
-              >
-                <p className="font-mono text-xs text-accent">{item.category}</p>
-                <h3 className="mt-3 text-2xl tracking-tight text-text-primary sm:text-3xl">
-                  {item.title}
-                </h3>
-                <p className="mt-4 max-w-3xl text-base leading-relaxed text-text-muted">
-                  {item.description}
-                </p>
+        <div className="mt-6">
+          {workItems.map((item) => (
+            <article key={item.title} className="border-t border-border py-8 first:border-t-0">
+              <h3 className="text-base text-text-primary">{item.title}</h3>
+              <p className="mt-2 text-base leading-relaxed text-text-muted">{item.summary}</p>
+              <p className="mt-3 font-mono text-xs leading-relaxed text-text-subtle">
+                {item.tags.join(' · ')}
+              </p>
 
-                <div className="mt-10 grid gap-8 lg:grid-cols-3 lg:gap-10">
-                  <dl className="border-t border-border-emphasis pt-5">
-                    <dt className="font-mono text-xs text-text-primary">Problem</dt>
-                    <dd className="mt-3 text-sm leading-relaxed text-text-muted">
-                      {item.caseStudy.problem}
-                    </dd>
-                  </dl>
-                  <dl className="border-t border-border-emphasis pt-5">
-                    <dt className="font-mono text-xs text-text-primary">Decision</dt>
-                    <dd className="mt-3 text-sm leading-relaxed text-text-muted">
-                      {item.caseStudy.decision}
-                    </dd>
-                  </dl>
-                  <dl className="border-t border-border-emphasis pt-5">
-                    <dt className="font-mono text-xs text-text-primary">Outcome</dt>
-                    <dd className="mt-3 text-sm leading-relaxed text-text-muted">
-                      {item.caseStudy.outcome}
-                    </dd>
+              <details className="group mt-4">
+                <summary className="inline-flex cursor-pointer list-none items-center gap-1 rounded-sm text-sm text-accent transition-colors hover:text-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent [&::-webkit-details-marker]:hidden">
+                  <ChevronRight
+                    size={16}
+                    aria-hidden="true"
+                    className="transition-transform group-open:rotate-90 motion-reduce:transition-none"
+                  />
+                  How I built it
+                </summary>
+
+                <div className="mt-5 space-y-5 border-l border-border-emphasis pl-5">
+                  <p className="text-sm leading-relaxed text-text-muted">{item.description}</p>
+                  <dl className="space-y-5">
+                    <div>
+                      <dt className="font-mono text-xs text-text-primary">Problem</dt>
+                      <dd className="mt-2 text-sm leading-relaxed text-text-muted">
+                        {item.caseStudy.problem}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className="font-mono text-xs text-text-primary">Decision</dt>
+                      <dd className="mt-2 text-sm leading-relaxed text-text-muted">
+                        {item.caseStudy.decision}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className="font-mono text-xs text-text-primary">Outcome</dt>
+                      <dd className="mt-2 text-sm leading-relaxed text-text-muted">
+                        {item.caseStudy.outcome}
+                      </dd>
+                    </div>
                   </dl>
                 </div>
-
-                <p className="mt-9 font-mono text-xs leading-relaxed text-text-subtle">
-                  <span className="text-text-muted">Technologies:</span> {item.tags.join(', ')}
-                </p>
-              </article>
-            ))}
-          </div>
+              </details>
+            </article>
+          ))}
         </div>
       </div>
     </section>

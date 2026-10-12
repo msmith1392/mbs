@@ -1,5 +1,8 @@
 # CLAUDE.md
 
-Project context for AI assistants lives in **[AGENTS.md](./AGENTS.md)**. Read that file for stack, design system, voice, patterns, and deployment.
+@AGENTS.md
 
-Human onboarding: [README.md](./README.md). Cursor rules: [.cursor/rules/mbs.mdc](./.cursor/rules/mbs.mdc).
+## Claude Code notes
+
+- Keep shared rules in `AGENTS.md` so Cursor and Codex see them too. Only Claude-specific
+  notes belong here.

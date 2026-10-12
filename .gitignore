@@ -27,3 +27,6 @@ resendapikey
 *.njsproj
 *.sln
 *.sw?
+
+# Local planning docs
+plans
